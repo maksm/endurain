@@ -1,0 +1,1874 @@
+2025-05-01 11:13:10,486 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 11:13:10,486 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 11:13:10,486 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:13:10,486 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:18:42,594 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 11:18:42,594 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 11:18:42,594 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:18:42,594 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:18:46,973 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 11:18:46,973 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 11:18:46,973 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:18:46,973 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:26:37,397 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 10:50:20 CEST)" was missed by 0:36:16.675879
+2025-05-01 11:26:37,398 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 10:50:20 CEST)" was missed by 0:36:16.676720
+2025-05-01 11:27:44,095 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 11:27:44,095 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 11:27:44,095 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:27:44,095 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:31:32,460 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 11:31:32,461 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 11:31:32,461 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:31:32,461 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 11:50:21,946 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 12:50:20 CEST)" was missed by 0:00:01.224705
+2025-05-01 11:50:21,946 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 12:50:20 CEST)" was missed by 0:00:01.224786
+2025-05-01 12:13:30,144 - main_logger - DEBUG - Raw types_query result: [(1,), (11,), (12,)]
+2025-05-01 12:13:30,144 - main_logger - DEBUG - Extracted type_ids: [1, 11, 12]
+2025-05-01 12:13:30,144 - main_logger - DEBUG - Mapped type_names: ['Hike', 'Run', 'Walk']
+2025-05-01 12:13:30,144 - main_logger - INFO - Returning unique type names: ['Hike', 'Run', 'Walk']
+2025-05-01 12:16:54,929 - main_logger - INFO - Backend shutdown event
+2025-05-01 12:16:54,930 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-01 12:19:17,348 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-01 12:19:17,374 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-01 12:19:17,375 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-01 12:19:17,384 - main_logger - INFO - Checking for migrations not executed
+2025-05-01 12:19:17,517 - main_logger - INFO - Migration check completed
+2025-05-01 12:19:17,517 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-01 12:19:17,517 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-01 12:19:17,518 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-01 12:19:17,518 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-01 12:19:17,518 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-01 12:19:17,518 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-01 12:19:17,518 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-01 12:19:17,518 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-01 12:19:17,964 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 12:19:17,964 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 12:19:17,964 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-01 12:19:17,969 - main_logger - INFO - User 1: Strava not linked
+2025-05-01 12:19:17,969 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-01 12:19:17,973 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-01 12:19:18,178 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-01 12:19:30,295 - main_logger - ERROR - Error in get_user_activities_with_pagination: or_ expected 2 arguments, got 4
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 174, in get_user_activities_with_pagination
+    or_(
+TypeError: or_ expected 2 arguments, got 4
+2025-05-01 12:19:37,225 - main_logger - ERROR - Error in get_user_activities_with_pagination: or_ expected 2 arguments, got 4
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 174, in get_user_activities_with_pagination
+    or_(
+TypeError: or_ expected 2 arguments, got 4
+2025-05-01 12:21:59,850 - main_logger - INFO - Backend shutdown event
+2025-05-01 12:21:59,850 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-01 12:22:38,983 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-01 12:22:39,000 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-01 12:22:39,000 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-01 12:22:39,010 - main_logger - INFO - Checking for migrations not executed
+2025-05-01 12:22:39,120 - main_logger - INFO - Migration check completed
+2025-05-01 12:22:39,121 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-01 12:22:39,121 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-01 12:22:39,121 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-01 12:22:39,121 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-01 12:22:39,122 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-01 12:22:39,122 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-01 12:22:39,122 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-01 12:22:39,122 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-01 12:22:39,514 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 12:22:39,514 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 12:22:39,514 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-01 12:22:39,517 - main_logger - INFO - User 1: Strava not linked
+2025-05-01 12:22:39,518 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-01 12:22:39,520 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-01 12:22:39,807 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-01 12:24:28,359 - main_logger - INFO - Backend shutdown event
+2025-05-01 12:24:28,359 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-01 12:24:55,469 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-01 12:24:55,491 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-01 12:24:55,491 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-01 12:24:55,500 - main_logger - INFO - Checking for migrations not executed
+2025-05-01 12:24:55,610 - main_logger - INFO - Migration check completed
+2025-05-01 12:24:55,610 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-01 12:24:55,610 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-01 12:24:55,611 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-01 12:24:55,611 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-01 12:24:55,611 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-01 12:24:55,611 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-01 12:24:55,611 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-01 12:24:55,611 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-01 12:24:56,047 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 12:24:56,047 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 12:24:56,047 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-01 12:24:56,050 - main_logger - INFO - User 1: Strava not linked
+2025-05-01 12:24:56,050 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-01 12:24:56,052 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-01 12:24:56,330 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-01 12:25:14,401 - main_logger - INFO - Garmin Connect activities will be processed in the background for user 1
+2025-05-01 12:25:14,868 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 12:25:14,871 - main_logger - INFO - User 1: Activity 18958761514 already stored in the database
+2025-05-01 12:25:14,873 - main_logger - INFO - User 1: Activity 18485373896 already stored in the database
+2025-05-01 12:25:14,876 - main_logger - INFO - User 1: Activity 18447022465 already stored in the database
+2025-05-01 12:25:14,877 - main_logger - INFO - User 1: Activity 18436636610 already stored in the database
+2025-05-01 12:25:14,879 - main_logger - INFO - User 1: Activity 18419347694 already stored in the database
+2025-05-01 12:25:14,880 - main_logger - INFO - User 1: Activity 18350999204 already stored in the database
+2025-05-01 12:25:14,880 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 12:25:14,880 - main_logger - INFO - User 1: 7 Garmin Connect activities processed
+2025-05-01 12:25:48,631 - main_logger - INFO - Garmin Connect activities will be processed in the background for user 1
+2025-05-01 12:25:49,156 - main_logger - INFO - User 1: Processing activity 18979656249
+2025-05-01 12:25:49,584 - main_logger - INFO - Parsing file: files/18979656249_ACTIVITY.fit
+2025-05-01 12:25:51,618 - main_logger - INFO - User 1: Activity 18958761514 already stored in the database
+2025-05-01 12:25:51,618 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 12:25:51,618 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-01 17:29:55,200 - main_logger - INFO - Backend shutdown event
+2025-05-01 17:29:55,200 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-01 17:31:39,236 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-01 17:31:39,266 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-01 17:31:39,266 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-01 17:31:39,279 - main_logger - INFO - Checking for migrations not executed
+2025-05-01 17:31:39,434 - main_logger - INFO - Migration check completed
+2025-05-01 17:31:39,435 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-01 17:31:39,435 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-01 17:31:39,436 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-01 17:31:39,436 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-01 17:31:39,436 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-01 17:31:39,436 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-01 17:31:39,436 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-01 17:31:39,436 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-01 17:31:39,981 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 17:31:39,981 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 17:31:39,981 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-01 17:31:39,985 - main_logger - INFO - User 1: Strava not linked
+2025-05-01 17:31:39,986 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-01 17:31:39,991 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-01 17:31:40,273 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-01 17:37:14,108 - main_logger - INFO - Backend shutdown event
+2025-05-01 17:37:14,109 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-01 17:39:04,714 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-01 17:39:04,752 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-01 17:39:04,752 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-01 17:39:04,769 - main_logger - INFO - Checking for migrations not executed
+2025-05-01 17:39:04,921 - main_logger - INFO - Migration check completed
+2025-05-01 17:39:04,922 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-01 17:39:04,922 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-01 17:39:04,922 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-01 17:39:04,922 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-01 17:39:04,923 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-01 17:39:04,923 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-01 17:39:04,923 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-01 17:39:04,923 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-01 17:39:09,370 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-01 17:39:09,370 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-01 17:39:09,370 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-01 17:39:09,377 - main_logger - INFO - User 1: Strava not linked
+2025-05-01 17:39:09,378 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-01 17:39:09,384 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-01 17:39:10,290 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-01 19:53:24,695 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 18:39:04 CEST)" was missed by 0:14:19.772925
+2025-05-01 19:53:24,696 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 20:39:04 CEST)" was missed by 0:14:19.773559
+2025-05-01 21:18:21,065 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 21:39:04 CEST)" was missed by 0:39:16.142763
+2025-05-01 21:18:21,065 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-01 21:39:04 CEST)" was missed by 0:39:16.142844
+2025-05-02 08:00:12,592 - main_logger - INFO - Backend shutdown event
+2025-05-02 08:00:12,592 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 08:01:42,626 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 08:01:42,656 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 08:01:42,656 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 08:01:42,682 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 08:01:42,832 - main_logger - INFO - Migration check completed
+2025-05-02 08:01:42,833 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 08:01:42,833 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 08:01:42,834 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 08:01:42,834 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 08:01:42,834 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 08:01:42,834 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 08:01:42,834 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 08:01:42,834 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 08:01:43,108 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 08:01:43,108 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 08:01:43,113 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 08:01:43,113 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 08:01:43,117 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 08:01:43,353 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 08:02:25,452 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:04:28,432 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:04:39,498 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:04:51,335 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:05:01,570 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:05:12,122 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:05:21,893 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:06,392 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:09,943 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:13,550 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:15,073 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:17,605 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:06:20,161 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:26:15,954 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 306, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-02 08:30:58,436 - main_logger - INFO - Backend shutdown event
+2025-05-02 08:30:58,437 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 08:32:17,011 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 08:32:17,031 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 08:32:17,031 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 08:32:17,040 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 08:32:17,154 - main_logger - INFO - Migration check completed
+2025-05-02 08:32:17,154 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 08:32:17,154 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 08:32:17,155 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 08:32:17,155 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 08:32:17,155 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 08:32:17,155 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 08:32:17,155 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 08:32:17,155 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 08:32:17,412 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 08:32:17,412 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 08:32:17,416 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 08:32:17,416 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 08:32:17,418 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 08:32:17,715 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 10:34:45,255 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-02 09:32:17 CEST)" was missed by 0:02:28.100749
+2025-05-02 10:34:45,256 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-02 09:32:17 CEST)" was missed by 0:02:28.101684
+2025-05-02 13:50:31,043 - main_logger - INFO - Backend shutdown event
+2025-05-02 13:50:31,043 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 15:10:40,341 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:10:40,386 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:10:40,386 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:11:44,932 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:11:44,959 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:11:44,959 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:12:49,575 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:12:49,602 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:12:49,602 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:13:54,342 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:13:54,367 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:13:54,367 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:10,804 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:10,843 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:10,843 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:14,990 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:15,009 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:15,009 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:18,234 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:18,254 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:18,254 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:21,656 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:21,672 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:21,672 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:25,845 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:25,865 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:25,865 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:31,906 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:31,930 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:31,930 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:39,627 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:39,653 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:39,653 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:16:50,635 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:16:50,662 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:16:50,662 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:17:08,138 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:17:08,165 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:17:08,165 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:17:38,409 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:17:38,435 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:17:38,435 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:18:34,303 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:18:34,327 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:18:34,327 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:19:39,031 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:19:39,057 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:19:39,058 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 15:20:43,636 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 15:20:43,661 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 15:20:43,662 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:00:50,134 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:00:50,164 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:00:50,165 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:00:50,177 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 19:00:50,297 - main_logger - INFO - Migration check completed
+2025-05-02 19:00:50,298 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 19:00:50,298 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 19:00:50,298 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 19:00:50,298 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 19:00:50,298 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 19:00:50,298 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 19:00:50,299 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 19:00:50,299 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 19:00:51,619 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 19:00:51,619 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 19:00:51,625 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 19:00:51,626 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 19:00:51,630 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 19:00:52,393 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 19:01:05,846 - main_logger - INFO - Backend shutdown event
+2025-05-02 19:01:05,846 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 19:02:38,683 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:02:38,705 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:02:38,705 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:02:38,715 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 19:02:38,829 - main_logger - INFO - Migration check completed
+2025-05-02 19:02:38,829 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 19:02:38,829 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 19:02:38,830 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 19:02:38,830 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 19:02:38,830 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 19:02:38,830 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 19:02:38,830 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 19:02:38,830 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 19:02:40,064 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 19:02:40,064 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 19:02:40,068 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 19:02:40,069 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 19:02:40,071 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 19:02:40,939 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 19:04:04,592 - main_logger - INFO - Backend shutdown event
+2025-05-02 19:04:04,592 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 19:05:16,371 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:16,391 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:16,391 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:19,795 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:19,813 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:19,814 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:23,337 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:23,353 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:23,353 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:27,051 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:27,073 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:27,073 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:31,276 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:31,298 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:31,298 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:36,358 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:36,376 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:36,377 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:43,108 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:43,128 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:43,128 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:05:53,009 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:05:53,028 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:05:53,029 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:06:09,068 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:06:09,087 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:06:09,087 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:06:37,763 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:06:37,782 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:06:37,782 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:09:26,373 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:09:26,392 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:09:26,392 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:09:26,402 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 19:09:26,525 - main_logger - INFO - Migration check completed
+2025-05-02 19:09:26,525 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 19:09:26,526 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 19:09:26,526 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 19:09:26,526 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 19:09:26,526 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 19:09:26,526 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 19:09:26,526 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 19:09:26,526 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 19:09:27,651 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 19:09:27,651 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 19:09:27,655 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 19:09:27,656 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 19:09:27,658 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 19:09:28,486 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 19:32:13,023 - main_logger - INFO - Backend shutdown event
+2025-05-02 19:32:13,023 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 19:35:20,697 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:35:20,729 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:35:20,729 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:35:20,740 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 19:35:20,870 - main_logger - INFO - Migration check completed
+2025-05-02 19:35:20,871 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 19:35:20,871 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 19:35:20,871 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 19:35:20,871 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 19:35:20,872 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 19:35:20,872 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 19:35:20,872 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 19:35:20,872 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 19:35:22,563 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 19:35:22,563 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 19:35:22,569 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 19:35:22,570 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 19:35:22,575 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 19:35:23,350 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 19:55:15,923 - main_logger - INFO - Backend shutdown event
+2025-05-02 19:55:15,923 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 19:57:00,980 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 19:57:01,015 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 19:57:01,015 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 19:57:01,025 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 19:57:01,137 - main_logger - INFO - Migration check completed
+2025-05-02 19:57:01,137 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 19:57:01,137 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 19:57:01,138 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 19:57:01,138 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 19:57:01,138 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 19:57:01,138 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 19:57:01,138 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 19:57:01,138 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 19:57:02,616 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 19:57:02,616 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 19:57:02,619 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 19:57:02,619 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 19:57:02,621 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 19:57:03,466 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 19:58:55,858 - main_logger - INFO - Backend shutdown event
+2025-05-02 19:58:55,858 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 20:00:33,552 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 20:00:33,586 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 20:00:33,586 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 20:00:33,596 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 20:00:33,754 - main_logger - INFO - Migration check completed
+2025-05-02 20:00:33,754 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 20:00:33,754 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 20:00:33,755 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 20:00:33,755 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 20:00:33,755 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 20:00:33,755 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 20:00:33,755 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 20:00:33,755 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 20:00:35,008 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 20:00:35,008 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 20:00:35,014 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 20:00:35,015 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 20:00:35,020 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 20:00:35,812 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 20:01:14,957 - main_logger - INFO - Backend shutdown event
+2025-05-02 20:01:14,957 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 20:02:41,779 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 20:02:41,814 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 20:02:41,814 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 20:02:41,825 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 20:02:41,968 - main_logger - INFO - Migration check completed
+2025-05-02 20:02:41,968 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 20:02:41,969 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 20:02:41,969 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 20:02:41,969 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 20:02:41,969 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 20:02:41,969 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 20:02:41,969 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 20:02:41,969 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 20:02:43,159 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 20:02:43,159 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 20:02:43,165 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 20:02:43,165 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 20:02:43,169 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 20:02:43,931 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 20:09:23,576 - main_logger - INFO - Backend shutdown event
+2025-05-02 20:09:23,576 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 20:10:49,891 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 20:10:49,923 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 20:10:49,923 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 20:10:49,933 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 20:10:50,064 - main_logger - INFO - Migration check completed
+2025-05-02 20:10:50,065 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 20:10:50,065 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 20:10:50,065 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 20:10:50,065 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 20:10:50,066 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 20:10:50,066 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 20:10:50,066 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 20:10:50,066 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 20:10:51,741 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 20:10:51,741 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 20:10:51,746 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 20:10:51,747 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 20:10:51,752 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 20:10:52,751 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 20:47:27,955 - main_logger - INFO - Backend shutdown event
+2025-05-02 20:47:27,955 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-02 20:49:06,947 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-02 20:49:06,980 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-02 20:49:06,980 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-02 20:49:06,991 - main_logger - INFO - Checking for migrations not executed
+2025-05-02 20:49:07,104 - main_logger - INFO - Migration check completed
+2025-05-02 20:49:07,104 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-02 20:49:07,104 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-02 20:49:07,105 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-02 20:49:07,105 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-02 20:49:07,105 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-02 20:49:07,105 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-02 20:49:07,105 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-02 20:49:07,105 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-02 20:49:08,385 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-02 20:49:08,385 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-02 20:49:08,391 - main_logger - INFO - User 1: Strava not linked
+2025-05-02 20:49:08,392 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-02 20:49:08,397 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-02 20:49:09,098 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-02 21:11:49,441 - main_logger - INFO - Garmin Connect activities will be processed in the background for user 1
+2025-05-02 21:11:53,778 - main_logger - INFO - User 1: Activity 18979656249 already stored in the database
+2025-05-02 21:11:53,781 - main_logger - INFO - User 1: Activity 18958761514 already stored in the database
+2025-05-02 21:11:53,783 - main_logger - INFO - User 1: Activity 18485373896 already stored in the database
+2025-05-02 21:11:53,786 - main_logger - INFO - User 1: Activity 18447022465 already stored in the database
+2025-05-02 21:11:53,789 - main_logger - INFO - User 1: Activity 18436636610 already stored in the database
+2025-05-02 21:11:53,792 - main_logger - INFO - User 1: Activity 18419347694 already stored in the database
+2025-05-02 21:11:53,794 - main_logger - INFO - User 1: Activity 18350999204 already stored in the database
+2025-05-02 21:11:53,797 - main_logger - INFO - User 1: Activity 18008400558 already stored in the database
+2025-05-02 21:11:53,799 - main_logger - INFO - User 1: Activity 17914019956 already stored in the database
+2025-05-02 21:11:53,801 - main_logger - INFO - User 1: Activity 17880675233 already stored in the database
+2025-05-02 21:11:53,804 - main_logger - INFO - User 1: Activity 17872904505 already stored in the database
+2025-05-02 21:11:53,806 - main_logger - INFO - User 1: Activity 17857455625 already stored in the database
+2025-05-02 21:11:53,808 - main_logger - INFO - User 1: Activity 17806893462 already stored in the database
+2025-05-02 21:11:53,810 - main_logger - INFO - User 1: Activity 17801729184 already stored in the database
+2025-05-02 21:11:53,812 - main_logger - INFO - User 1: Activity 17708891107 already stored in the database
+2025-05-02 21:11:53,814 - main_logger - INFO - User 1: Activity 17701897516 already stored in the database
+2025-05-02 21:11:53,816 - main_logger - INFO - User 1: Activity 17687638626 already stored in the database
+2025-05-02 21:11:53,818 - main_logger - INFO - User 1: Activity 17680057956 already stored in the database
+2025-05-02 21:11:53,821 - main_logger - INFO - User 1: Activity 17655734376 already stored in the database
+2025-05-02 21:11:53,823 - main_logger - INFO - User 1: Activity 17655731227 already stored in the database
+2025-05-02 21:11:53,825 - main_logger - INFO - User 1: Activity 17640862107 already stored in the database
+2025-05-02 21:11:53,827 - main_logger - INFO - User 1: Activity 17612453385 already stored in the database
+2025-05-02 21:11:53,829 - main_logger - INFO - User 1: Activity 17567458732 already stored in the database
+2025-05-02 21:11:53,831 - main_logger - INFO - User 1: Activity 17559193606 already stored in the database
+2025-05-02 21:11:53,833 - main_logger - INFO - User 1: Activity 17552050385 already stored in the database
+2025-05-02 21:11:53,835 - main_logger - INFO - User 1: Activity 17536736137 already stored in the database
+2025-05-02 21:11:53,838 - main_logger - INFO - User 1: Activity 17511930710 already stored in the database
+2025-05-02 21:11:53,840 - main_logger - INFO - User 1: Activity 17494006078 already stored in the database
+2025-05-02 21:11:53,842 - main_logger - INFO - User 1: Activity 17479092135 already stored in the database
+2025-05-02 21:11:53,843 - main_logger - INFO - User 1: Activity 17455945715 already stored in the database
+2025-05-02 21:11:53,845 - main_logger - INFO - User 1: Activity 17407781230 already stored in the database
+2025-05-02 21:11:53,846 - main_logger - INFO - User 1: Activity 17320882384 already stored in the database
+2025-05-02 21:11:53,847 - main_logger - INFO - User 1: Activity 17291214519 already stored in the database
+2025-05-02 21:11:53,849 - main_logger - INFO - User 1: Activity 17272656682 already stored in the database
+2025-05-02 21:11:53,850 - main_logger - INFO - User 1: Activity 17214101358 already stored in the database
+2025-05-02 21:11:53,851 - main_logger - INFO - User 1: Activity 17176264398 already stored in the database
+2025-05-02 21:11:53,853 - main_logger - INFO - User 1: Activity 17147627161 already stored in the database
+2025-05-02 21:11:53,855 - main_logger - INFO - User 1: Activity 17125262368 already stored in the database
+2025-05-02 21:11:53,856 - main_logger - INFO - User 1: Activity 17107841176 already stored in the database
+2025-05-02 21:11:53,858 - main_logger - INFO - User 1: Activity 17081397163 already stored in the database
+2025-05-02 21:11:53,859 - main_logger - INFO - User 1: Activity 17073012513 already stored in the database
+2025-05-02 21:11:53,861 - main_logger - INFO - User 1: Activity 17054627352 already stored in the database
+2025-05-02 21:11:53,862 - main_logger - INFO - User 1: Activity 17004074897 already stored in the database
+2025-05-02 21:11:53,864 - main_logger - INFO - User 1: Activity 16977550525 already stored in the database
+2025-05-02 21:11:53,865 - main_logger - INFO - User 1: Activity 16977229531 already stored in the database
+2025-05-02 21:11:53,866 - main_logger - INFO - User 1: Activity 16951568759 already stored in the database
+2025-05-02 21:11:53,868 - main_logger - INFO - User 1: Activity 16942605530 already stored in the database
+2025-05-02 21:11:53,869 - main_logger - INFO - User 1: Activity 16932827619 already stored in the database
+2025-05-02 21:11:53,871 - main_logger - INFO - User 1: Activity 16914971247 already stored in the database
+2025-05-02 21:11:53,873 - main_logger - INFO - User 1: Activity 16898606645 already stored in the database
+2025-05-02 21:11:53,874 - main_logger - INFO - User 1: Activity 16889856367 already stored in the database
+2025-05-02 21:11:53,875 - main_logger - INFO - User 1: Activity 16880779439 already stored in the database
+2025-05-02 21:11:53,877 - main_logger - INFO - User 1: Activity 16853820845 already stored in the database
+2025-05-02 21:11:53,878 - main_logger - INFO - User 1: Activity 16836967244 already stored in the database
+2025-05-02 21:11:53,880 - main_logger - INFO - User 1: Activity 16757842538 already stored in the database
+2025-05-02 21:11:53,881 - main_logger - INFO - User 1: Activity 16750192216 already stored in the database
+2025-05-02 21:11:53,882 - main_logger - INFO - User 1: Activity 16687350347 already stored in the database
+2025-05-02 21:11:53,884 - main_logger - INFO - User 1: Activity 16669238260 already stored in the database
+2025-05-02 21:11:53,885 - main_logger - INFO - User 1: Activity 16660537733 already stored in the database
+2025-05-02 21:11:53,887 - main_logger - INFO - User 1: Activity 16644124000 already stored in the database
+2025-05-02 21:11:53,888 - main_logger - INFO - User 1: Activity 16626737476 already stored in the database
+2025-05-02 21:11:53,890 - main_logger - INFO - User 1: Activity 16618035570 already stored in the database
+2025-05-02 21:11:53,891 - main_logger - INFO - User 1: Activity 16584135801 already stored in the database
+2025-05-02 21:11:53,893 - main_logger - INFO - User 1: Activity 16553621266 already stored in the database
+2025-05-02 21:11:53,894 - main_logger - INFO - User 1: Activity 16266855404 already stored in the database
+2025-05-02 21:11:53,895 - main_logger - INFO - User 1: Processing activity 16167660183
+2025-05-02 21:11:54,455 - main_logger - INFO - Parsing file: files/16167660183_ACTIVITY.fit
+2025-05-02 21:11:58,723 - main_logger - INFO - User 1: Processing activity 16049706618
+2025-05-02 21:11:59,152 - main_logger - INFO - Parsing file: files/16049706618_ACTIVITY.fit
+2025-05-02 21:12:02,197 - main_logger - INFO - User 1: Processing activity 15707411920
+2025-05-02 21:12:03,608 - main_logger - INFO - Parsing file: files/15707411920_ACTIVITY.fit
+2025-05-02 21:12:06,906 - main_logger - INFO - User 1: Processing activity 15353716879
+2025-05-02 21:12:07,446 - main_logger - INFO - Parsing file: files/15353716879_ACTIVITY.fit
+2025-05-02 21:12:11,002 - main_logger - INFO - User 1: Processing activity 15232260113
+2025-05-02 21:12:11,658 - main_logger - INFO - Parsing file: files/15232260113_ACTIVITY.fit
+2025-05-02 21:12:14,888 - main_logger - INFO - User 1: Processing activity 15219603267
+2025-05-02 21:12:15,358 - main_logger - INFO - Parsing file: files/15219603267_ACTIVITY.fit
+2025-05-02 21:12:19,868 - main_logger - INFO - User 1: Processing activity 15213982275
+2025-05-02 21:12:20,448 - main_logger - INFO - Parsing file: files/15213982275_ACTIVITY.fit
+2025-05-02 21:12:23,091 - main_logger - INFO - User 1: Processing activity 15200854448
+2025-05-02 21:12:23,596 - main_logger - INFO - Parsing file: files/15200854448_ACTIVITY.fit
+2025-05-02 21:12:27,303 - main_logger - INFO - User 1: Processing activity 15019371607
+2025-05-02 21:12:27,991 - main_logger - INFO - Parsing file: files/15019371607_ACTIVITY.fit
+2025-05-02 21:12:31,317 - main_logger - INFO - User 1: Processing activity 15003189667
+2025-05-02 21:12:31,741 - main_logger - INFO - Parsing file: files/15003189667_ACTIVITY.fit
+2025-05-02 21:12:35,051 - main_logger - INFO - User 1: Processing activity 14892294466
+2025-05-02 21:12:35,600 - main_logger - INFO - Parsing file: files/14892294466_ACTIVITY.fit
+2025-05-02 21:12:38,984 - main_logger - INFO - User 1: Processing activity 14650610960
+2025-05-02 21:12:39,488 - main_logger - INFO - Parsing file: files/14650610960_ACTIVITY.fit
+2025-05-02 21:12:43,421 - main_logger - INFO - User 1: Processing activity 14509164501
+2025-05-02 21:12:43,962 - main_logger - INFO - Parsing file: files/14509164501_ACTIVITY.fit
+2025-05-02 21:12:47,220 - main_logger - INFO - User 1: Processing activity 14447703938
+2025-05-02 21:12:47,676 - main_logger - INFO - Parsing file: files/14447703938_ACTIVITY.fit
+2025-05-02 21:12:50,591 - main_logger - INFO - User 1: Processing activity 14433948661
+2025-05-02 21:12:51,207 - main_logger - INFO - Parsing file: files/14433948661_ACTIVITY.fit
+2025-05-02 21:12:54,376 - main_logger - INFO - User 1: Processing activity 14113129671
+2025-05-02 21:12:54,846 - main_logger - INFO - Parsing file: files/14113129671_ACTIVITY.fit
+2025-05-02 21:12:58,162 - main_logger - INFO - User 1: Processing activity 14106506233
+2025-05-02 21:12:58,625 - main_logger - INFO - Parsing file: files/14106506233_ACTIVITY.fit
+2025-05-02 21:13:01,755 - main_logger - INFO - User 1: Processing activity 14017122400
+2025-05-02 21:13:02,320 - main_logger - INFO - Parsing file: files/14017122400_ACTIVITY.fit
+2025-05-02 21:13:05,865 - main_logger - INFO - User 1: Processing activity 13201206467
+2025-05-02 21:13:06,420 - main_logger - INFO - Parsing file: files/13201206467_ACTIVITY.fit
+2025-05-02 21:13:09,751 - main_logger - INFO - User 1: Processing activity 13132785609
+2025-05-02 21:13:10,315 - main_logger - INFO - Parsing file: files/13132785609_ACTIVITY.fit
+2025-05-02 21:13:14,108 - main_logger - INFO - User 1: Processing activity 12868184088
+2025-05-02 21:13:14,981 - main_logger - INFO - Parsing file: files/12868184088_ACTIVITY.fit
+2025-05-02 21:13:18,518 - main_logger - INFO - User 1: Processing activity 12702056888
+2025-05-02 21:13:18,955 - main_logger - INFO - Parsing file: files/12702056888_ACTIVITY.fit
+2025-05-02 21:13:21,915 - main_logger - INFO - User 1: Processing activity 12608001732
+2025-05-02 21:13:22,594 - main_logger - INFO - Parsing file: files/12608001732_ACTIVITY.fit
+2025-05-02 21:13:25,548 - main_logger - INFO - User 1: Processing activity 12146563863
+2025-05-02 21:13:25,994 - main_logger - INFO - Parsing file: files/12146563863_ACTIVITY.fit
+2025-05-02 21:13:30,246 - main_logger - INFO - User 1: Processing activity 12138486168
+2025-05-02 21:13:30,695 - main_logger - INFO - Parsing file: files/12138486168_ACTIVITY.fit
+2025-05-02 21:13:33,558 - main_logger - INFO - User 1: Processing activity 12027424486
+2025-05-02 21:13:34,067 - main_logger - INFO - Parsing file: files/12027424486_ACTIVITY.fit
+2025-05-02 21:13:36,906 - main_logger - INFO - User 1: Processing activity 11884348319
+2025-05-02 21:13:37,340 - main_logger - INFO - Parsing file: files/11884348319_ACTIVITY.fit
+2025-05-02 21:13:40,512 - main_logger - INFO - User 1: Processing activity 11838900417
+2025-05-02 21:13:41,439 - main_logger - INFO - Parsing file: files/11838900417_ACTIVITY.fit
+2025-05-02 21:13:45,601 - main_logger - INFO - User 1: Processing activity 11786088695
+2025-05-02 21:13:46,159 - main_logger - INFO - Parsing file: files/11786088695_ACTIVITY.fit
+2025-05-02 21:13:50,546 - main_logger - INFO - User 1: Processing activity 11781268300
+2025-05-02 21:13:50,984 - main_logger - INFO - Parsing file: files/11781268300_ACTIVITY.fit
+2025-05-02 21:13:54,766 - main_logger - INFO - User 1: Processing activity 11773546812
+2025-05-02 21:13:55,237 - main_logger - INFO - Parsing file: files/11773546812_ACTIVITY.fit
+2025-05-02 21:13:58,554 - main_logger - INFO - User 1: Processing activity 11750655594
+2025-05-02 21:13:59,022 - main_logger - INFO - Parsing file: files/11750655594_ACTIVITY.fit
+2025-05-02 21:14:01,913 - main_logger - INFO - User 1: Processing activity 11724951677
+2025-05-02 21:14:02,402 - main_logger - INFO - Parsing file: files/11724951677_ACTIVITY.fit
+2025-05-02 21:14:05,186 - main_logger - INFO - User 1: Processing activity 11667328574
+2025-05-02 21:14:05,647 - main_logger - INFO - Parsing file: files/11667328574_ACTIVITY.fit
+2025-05-02 21:14:10,163 - main_logger - INFO - User 1: Processing activity 11652375600
+2025-05-02 21:14:10,722 - main_logger - INFO - Parsing file: files/11652375600_ACTIVITY.fit
+2025-05-02 21:14:14,015 - main_logger - INFO - User 1: Processing activity 11629500724
+2025-05-02 21:14:14,430 - main_logger - INFO - Parsing file: files/11629500724_ACTIVITY.fit
+2025-05-02 21:14:17,200 - main_logger - INFO - User 1: Processing activity 11629495233
+2025-05-02 21:14:17,692 - main_logger - INFO - Parsing file: files/11629495233_ACTIVITY.fit
+2025-05-02 21:14:20,615 - main_logger - INFO - User 1: Processing activity 11522373111
+2025-05-02 21:14:21,114 - main_logger - INFO - Parsing file: files/11522373111_ACTIVITY.fit
+2025-05-02 21:14:26,576 - main_logger - INFO - User 1: Processing activity 11493966139
+2025-05-02 21:14:27,030 - main_logger - INFO - Parsing file: files/11493966139_ACTIVITY.fit
+2025-05-02 21:14:29,850 - main_logger - INFO - User 1: Processing activity 11475442216
+2025-05-02 21:14:30,432 - main_logger - INFO - Parsing file: files/11475442216_ACTIVITY.fit
+2025-05-02 21:14:32,946 - main_logger - INFO - User 1: Processing activity 11462231986
+2025-05-02 21:14:33,455 - main_logger - INFO - Parsing file: files/11462231986_ACTIVITY.fit
+2025-05-02 21:14:37,026 - main_logger - INFO - User 1: Processing activity 11320215182
+2025-05-02 21:14:37,611 - main_logger - INFO - Parsing file: files/11320215182_ACTIVITY.fit
+2025-05-02 21:14:41,551 - main_logger - INFO - User 1: Processing activity 11243223562
+2025-05-02 21:14:42,056 - main_logger - INFO - Parsing file: files/11243223562_ACTIVITY.fit
+2025-05-02 21:14:44,834 - main_logger - INFO - User 1: Processing activity 11147753573
+2025-05-02 21:14:45,403 - main_logger - INFO - Parsing file: files/11147753573_ACTIVITY.fit
+2025-05-02 21:14:47,982 - main_logger - INFO - User 1: Processing activity 11133436807
+2025-05-02 21:14:48,508 - main_logger - INFO - Parsing file: files/11133436807_ACTIVITY.fit
+2025-05-02 21:14:51,043 - main_logger - INFO - User 1: Processing activity 11122840882
+2025-05-02 21:14:51,477 - main_logger - INFO - Parsing file: files/11122840882_ACTIVITY.fit
+2025-05-02 21:14:54,223 - main_logger - INFO - User 1: Processing activity 11114008345
+2025-05-02 21:14:54,958 - main_logger - INFO - Parsing file: files/11114008345_ACTIVITY.fit
+2025-05-02 21:14:58,192 - main_logger - INFO - User 1: Processing activity 11057726396
+2025-05-02 21:14:58,739 - main_logger - INFO - Parsing file: files/11057726396_ACTIVITY.fit
+2025-05-02 21:15:06,234 - main_logger - INFO - User 1: Processing activity 11029174898
+2025-05-02 21:15:06,769 - main_logger - INFO - Parsing file: files/11029174898_ACTIVITY.fit
+2025-05-02 21:15:09,476 - main_logger - INFO - User 1: Processing activity 11013405263
+2025-05-02 21:15:10,015 - main_logger - INFO - Parsing file: files/11013405263_ACTIVITY.fit
+2025-05-02 21:15:13,514 - main_logger - INFO - User 1: Processing activity 11007692994
+2025-05-02 21:15:14,111 - main_logger - INFO - Parsing file: files/11007692994_ACTIVITY.fit
+2025-05-02 21:15:18,116 - main_logger - INFO - User 1: Processing activity 10957951966
+2025-05-02 21:15:18,639 - main_logger - INFO - Parsing file: files/10957951966_ACTIVITY.fit
+2025-05-02 21:15:23,307 - main_logger - INFO - User 1: Processing activity 10938872096
+2025-05-02 21:15:23,797 - main_logger - INFO - Parsing file: files/10938872096_ACTIVITY.fit
+2025-05-02 21:15:27,117 - main_logger - INFO - User 1: Processing activity 10931144083
+2025-05-02 21:15:27,834 - main_logger - INFO - Parsing file: files/10931144083_ACTIVITY.fit
+2025-05-02 21:15:30,655 - main_logger - INFO - User 1: Processing activity 10915851663
+2025-05-02 21:15:31,240 - main_logger - INFO - Parsing file: files/10915851663_ACTIVITY.fit
+2025-05-02 21:15:36,987 - main_logger - INFO - User 1: Processing activity 10890000310
+2025-05-02 21:15:37,885 - main_logger - INFO - Parsing file: files/10890000310_ACTIVITY.fit
+2025-05-02 21:15:40,965 - main_logger - INFO - User 1: Processing activity 10883250755
+2025-05-02 21:15:41,425 - main_logger - INFO - Parsing file: files/10883250755_ACTIVITY.fit
+2025-05-02 21:15:45,035 - main_logger - INFO - User 1: Processing activity 10875119593
+2025-05-02 21:15:45,545 - main_logger - INFO - Parsing file: files/10875119593_ACTIVITY.fit
+2025-05-02 21:15:48,426 - main_logger - INFO - User 1: Processing activity 10865505815
+2025-05-02 21:15:48,928 - main_logger - INFO - Parsing file: files/10865505815_ACTIVITY.fit
+2025-05-02 21:15:52,028 - main_logger - INFO - User 1: Processing activity 10860566691
+2025-05-02 21:15:52,498 - main_logger - INFO - Parsing file: files/10860566691_ACTIVITY.fit
+2025-05-02 21:15:55,067 - main_logger - INFO - User 1: Processing activity 10851445044
+2025-05-02 21:15:55,585 - main_logger - INFO - Parsing file: files/10851445044_ACTIVITY.fit
+2025-05-02 21:15:58,486 - main_logger - INFO - User 1: Processing activity 10835112854
+2025-05-02 21:15:59,037 - main_logger - INFO - Parsing file: files/10835112854_ACTIVITY.fit
+2025-05-02 21:16:02,083 - main_logger - INFO - User 1: Processing activity 10819701541
+2025-05-02 21:16:02,654 - main_logger - INFO - Parsing file: files/10819701541_ACTIVITY.fit
+2025-05-02 21:16:07,237 - main_logger - INFO - User 1: Processing activity 10795101164
+2025-05-02 21:16:07,773 - main_logger - INFO - Parsing file: files/10795101164_ACTIVITY.fit
+2025-05-02 21:16:10,991 - main_logger - INFO - User 1: Processing activity 10788214214
+2025-05-02 21:16:11,506 - main_logger - INFO - Parsing file: files/10788214214_ACTIVITY.fit
+2025-05-02 21:16:14,190 - main_logger - INFO - User 1: Processing activity 10766530408
+2025-05-02 21:16:14,755 - main_logger - INFO - Parsing file: files/10766530408_ACTIVITY.fit
+2025-05-02 21:16:19,709 - main_logger - INFO - User 1: Processing activity 10741593068
+2025-05-02 21:16:20,204 - main_logger - INFO - Parsing file: files/10741593068_ACTIVITY.fit
+2025-05-02 21:16:22,873 - main_logger - INFO - User 1: Processing activity 10723973050
+2025-05-02 21:16:23,457 - main_logger - INFO - Parsing file: files/10723973050_ACTIVITY.fit
+2025-05-02 21:16:26,399 - main_logger - INFO - User 1: Processing activity 10718424718
+2025-05-02 21:16:26,874 - main_logger - INFO - Parsing file: files/10718424718_ACTIVITY.fit
+2025-05-02 21:16:30,023 - main_logger - INFO - User 1: Processing activity 10711120451
+2025-05-02 21:16:30,500 - main_logger - INFO - Parsing file: files/10711120451_ACTIVITY.fit
+2025-05-02 21:16:33,116 - main_logger - INFO - User 1: Processing activity 10699514528
+2025-05-02 21:16:33,630 - main_logger - INFO - Parsing file: files/10699514528_ACTIVITY.fit
+2025-05-02 21:16:38,303 - main_logger - INFO - User 1: Processing activity 10679470874
+2025-05-02 21:16:40,542 - main_logger - INFO - Parsing file: files/10679470874_ACTIVITY.fit
+2025-05-02 21:16:44,699 - main_logger - INFO - User 1: Processing activity 10661731034
+2025-05-02 21:16:45,158 - main_logger - INFO - Parsing file: files/10661731034_ACTIVITY.fit
+2025-05-02 21:16:47,806 - main_logger - INFO - User 1: Processing activity 10655681580
+2025-05-02 21:16:48,323 - main_logger - INFO - Parsing file: files/10655681580_ACTIVITY.fit
+2025-05-02 21:16:51,435 - main_logger - INFO - User 1: Processing activity 10645620823
+2025-05-02 21:16:51,889 - main_logger - INFO - Parsing file: files/10645620823_ACTIVITY.fit
+2025-05-02 21:16:54,613 - main_logger - INFO - User 1: Processing activity 10634104417
+2025-05-02 21:16:55,192 - main_logger - INFO - Parsing file: files/10634104417_ACTIVITY.fit
+2025-05-02 21:16:59,173 - main_logger - INFO - User 1: Processing activity 10609026483
+2025-05-02 21:17:00,091 - main_logger - INFO - Parsing file: files/10609026483_ACTIVITY.fit
+2025-05-02 21:17:03,062 - main_logger - INFO - User 1: Processing activity 10588007158
+2025-05-02 21:17:03,528 - main_logger - INFO - Parsing file: files/10588007158_ACTIVITY.fit
+2025-05-02 21:17:06,792 - main_logger - INFO - User 1: Processing activity 10582775252
+2025-05-02 21:17:07,379 - main_logger - INFO - Parsing file: files/10582775252_ACTIVITY.fit
+2025-05-03 20:23:50,608 - main_logger - ERROR - Error in location_based_on_coordinates - ('Connection aborted.', OSError(101, 'Network is unreachable'))
+2025-05-03 20:23:50,611 - main_logger - INFO - User 1: Processing activity 10573097641
+2025-05-03 20:24:01,345 - main_logger - INFO - Parsing file: files/10573097641_ACTIVITY.fit
+2025-05-03 20:24:04,579 - main_logger - INFO - User 1: Processing activity 10560231605
+2025-05-03 20:24:05,291 - main_logger - INFO - Parsing file: files/10560231605_ACTIVITY.fit
+2025-05-03 20:24:07,891 - main_logger - INFO - User 1: Processing activity 10543029332
+2025-05-03 20:24:08,590 - main_logger - INFO - Parsing file: files/10543029332_ACTIVITY.fit
+2025-05-03 20:24:12,354 - main_logger - INFO - User 1: Processing activity 10543024834
+2025-05-03 20:24:12,958 - main_logger - INFO - Parsing file: files/10543024834_ACTIVITY.fit
+2025-05-03 20:24:15,584 - main_logger - INFO - User 1: Processing activity 10543023569
+2025-05-03 20:24:16,132 - main_logger - INFO - Parsing file: files/10543023569_ACTIVITY.fit
+2025-05-03 20:24:18,696 - main_logger - INFO - User 1: Processing activity 10543022179
+2025-05-03 20:24:19,156 - main_logger - INFO - Parsing file: files/10543022179_ACTIVITY.fit
+2025-05-03 20:24:21,530 - main_logger - INFO - User 1: Processing activity 10495985704
+2025-05-03 20:24:22,045 - main_logger - INFO - Parsing file: files/10495985704_ACTIVITY.fit
+2025-05-03 20:24:25,787 - main_logger - INFO - User 1: Processing activity 10488025875
+2025-05-03 20:24:26,374 - main_logger - INFO - Parsing file: files/10488025875_ACTIVITY.fit
+2025-05-03 20:24:29,526 - main_logger - INFO - User 1: Processing activity 10469424416
+2025-05-03 20:24:30,163 - main_logger - INFO - Parsing file: files/10469424416_ACTIVITY.fit
+2025-05-03 20:24:34,211 - main_logger - INFO - User 1: Processing activity 10424129188
+2025-05-03 20:24:34,871 - main_logger - INFO - Parsing file: files/10424129188_ACTIVITY.fit
+2025-05-03 20:24:37,509 - main_logger - INFO - User 1: Processing activity 10417803806
+2025-05-03 20:24:38,147 - main_logger - INFO - Parsing file: files/10417803806_ACTIVITY.fit
+2025-05-03 20:24:40,742 - main_logger - INFO - User 1: Processing activity 10402838023
+2025-05-03 20:24:41,324 - main_logger - INFO - Parsing file: files/10402838023_ACTIVITY.fit
+2025-05-03 20:24:45,217 - main_logger - INFO - User 1: Processing activity 10394695256
+2025-05-03 20:24:45,711 - main_logger - INFO - Parsing file: files/10394695256_ACTIVITY.fit
+2025-05-03 20:24:48,346 - main_logger - INFO - User 1: Processing activity 10378917284
+2025-05-03 20:24:48,798 - main_logger - INFO - Parsing file: files/10378917284_ACTIVITY.fit
+2025-05-03 20:24:51,423 - main_logger - INFO - User 1: Processing activity 10360464816
+2025-05-03 20:24:51,888 - main_logger - INFO - Parsing file: files/10360464816_ACTIVITY.fit
+2025-05-03 20:24:55,276 - main_logger - INFO - User 1: Processing activity 10324253089
+2025-05-03 20:24:55,863 - main_logger - INFO - Parsing file: files/10324253089_ACTIVITY.fit
+2025-05-03 20:24:58,504 - main_logger - INFO - User 1: Processing activity 10312309901
+2025-05-03 20:24:59,130 - main_logger - INFO - Parsing file: files/10312309901_ACTIVITY.fit
+2025-05-03 20:25:02,180 - main_logger - INFO - User 1: Processing activity 10306831120
+2025-05-03 20:25:02,751 - main_logger - INFO - Parsing file: files/10306831120_ACTIVITY.fit
+2025-05-03 20:25:05,699 - main_logger - INFO - User 1: Processing activity 10285743345
+2025-05-03 20:25:06,308 - main_logger - INFO - Parsing file: files/10285743345_ACTIVITY.fit
+2025-05-03 20:25:08,931 - main_logger - INFO - User 1: Processing activity 10267276859
+2025-05-03 20:25:09,482 - main_logger - INFO - Parsing file: files/10267276859_ACTIVITY.fit
+2025-05-03 20:25:12,224 - main_logger - INFO - User 1: Processing activity 10205457308
+2025-05-03 20:25:12,867 - main_logger - INFO - Parsing file: files/10205457308_ACTIVITY.fit
+2025-05-03 20:25:18,379 - main_logger - INFO - User 1: Processing activity 10188013563
+2025-05-03 20:25:18,905 - main_logger - INFO - Parsing file: files/10188013563_ACTIVITY.fit
+2025-05-03 20:25:21,853 - main_logger - INFO - User 1: Processing activity 10185238601
+2025-05-03 20:25:22,370 - main_logger - INFO - Parsing file: files/10185238601_ACTIVITY.fit
+2025-05-03 20:25:25,500 - main_logger - INFO - User 1: Processing activity 10157449398
+2025-05-03 20:25:26,029 - main_logger - INFO - Parsing file: files/10157449398_ACTIVITY.fit
+2025-05-03 20:25:28,689 - main_logger - INFO - User 1: Processing activity 10150895331
+2025-05-03 20:25:29,358 - main_logger - INFO - Parsing file: files/10150895331_ACTIVITY.fit
+2025-05-03 20:25:32,311 - main_logger - INFO - User 1: Processing activity 10117704365
+2025-05-03 20:25:32,831 - main_logger - INFO - Parsing file: files/10117704365_ACTIVITY.fit
+2025-05-03 20:25:36,127 - main_logger - INFO - User 1: Processing activity 10044961013
+2025-05-03 20:25:36,965 - main_logger - INFO - Parsing file: files/10044961013_ACTIVITY.fit
+2025-05-03 20:25:40,145 - main_logger - INFO - User 1: Processing activity 10029847743
+2025-05-03 20:25:40,817 - main_logger - INFO - Parsing file: files/10029847743_ACTIVITY.fit
+2025-05-03 20:25:43,418 - main_logger - INFO - User 1: Processing activity 10027789586
+2025-05-03 20:25:44,094 - main_logger - INFO - Parsing file: files/10027789586_ACTIVITY.fit
+2025-05-03 20:25:46,718 - main_logger - INFO - User 1: Processing activity 9970986136
+2025-05-03 20:25:47,627 - main_logger - INFO - Parsing file: files/9970986136_ACTIVITY.fit
+2025-05-03 20:25:51,764 - main_logger - INFO - User 1: Processing activity 9928859669
+2025-05-03 20:25:52,389 - main_logger - INFO - Parsing file: files/9928859669_ACTIVITY.fit
+2025-05-03 20:25:55,501 - main_logger - INFO - User 1: Processing activity 9883926121
+2025-05-03 20:25:56,178 - main_logger - INFO - Parsing file: files/9883926121_ACTIVITY.fit
+2025-05-03 20:25:59,394 - main_logger - INFO - User 1: Processing activity 9835379535
+2025-05-03 20:26:00,273 - main_logger - INFO - Parsing file: files/9835379535_ACTIVITY.fit
+2025-05-03 20:26:02,875 - main_logger - INFO - User 1: Processing activity 9818912024
+2025-05-03 20:26:03,556 - main_logger - INFO - Parsing file: files/9818912024_ACTIVITY.fit
+2025-05-03 20:26:09,413 - main_logger - INFO - User 1: Processing activity 9799790762
+2025-05-03 20:26:10,309 - main_logger - INFO - Parsing file: files/9799790762_ACTIVITY.fit
+2025-05-03 20:26:13,185 - main_logger - INFO - User 1: Processing activity 9756166805
+2025-05-03 20:26:13,791 - main_logger - INFO - Parsing file: files/9756166805_ACTIVITY.fit
+2025-05-03 20:26:16,659 - main_logger - INFO - User 1: Processing activity 9733881209
+2025-05-03 20:26:17,171 - main_logger - INFO - Parsing file: files/9733881209_ACTIVITY.fit
+2025-05-03 20:26:19,826 - main_logger - INFO - User 1: Processing activity 9727922813
+2025-05-03 20:26:20,345 - main_logger - INFO - Parsing file: files/9727922813_ACTIVITY.fit
+2025-05-03 20:26:22,975 - main_logger - INFO - User 1: Processing activity 9715121604
+2025-05-03 20:26:23,622 - main_logger - INFO - Parsing file: files/9715121604_ACTIVITY.fit
+2025-05-03 20:26:26,251 - main_logger - INFO - User 1: Processing activity 9679134068
+2025-05-03 20:26:26,795 - main_logger - INFO - Parsing file: files/9679134068_ACTIVITY.fit
+2025-05-03 20:26:29,411 - main_logger - INFO - User 1: Processing activity 9653043839
+2025-05-03 20:26:30,052 - main_logger - INFO - Parsing file: files/9653043839_ACTIVITY.fit
+2025-05-03 20:26:32,759 - main_logger - INFO - User 1: Processing activity 9641805357
+2025-05-03 20:26:33,350 - main_logger - INFO - Parsing file: files/9641805357_ACTIVITY.fit
+2025-05-03 20:26:35,860 - main_logger - INFO - User 1: Processing activity 9637211220
+2025-05-03 20:26:36,549 - main_logger - INFO - Parsing file: files/9637211220_ACTIVITY.fit
+2025-05-03 20:26:39,151 - main_logger - INFO - User 1: Processing activity 9628145406
+2025-05-03 20:26:39,781 - main_logger - INFO - Parsing file: files/9628145406_ACTIVITY.fit
+2025-05-03 20:26:42,552 - main_logger - INFO - User 1: Processing activity 9605632429
+2025-05-03 20:26:43,078 - main_logger - INFO - Parsing file: files/9605632429_ACTIVITY.fit
+2025-05-03 20:26:45,707 - main_logger - INFO - User 1: Processing activity 9596088421
+2025-05-03 20:26:46,254 - main_logger - INFO - Parsing file: files/9596088421_ACTIVITY.fit
+2025-05-03 20:26:49,576 - main_logger - INFO - User 1: Processing activity 9576983703
+2025-05-03 20:26:50,150 - main_logger - INFO - Parsing file: files/9576983703_ACTIVITY.fit
+2025-05-03 20:26:55,265 - main_logger - INFO - User 1: Processing activity 9561525219
+2025-05-03 20:26:56,208 - main_logger - INFO - Parsing file: files/9561525219_ACTIVITY.fit
+2025-05-03 20:26:57,517 - main_logger - INFO - User 1: Processing activity 9554816363
+2025-05-03 20:26:58,069 - main_logger - INFO - Parsing file: files/9554816363_ACTIVITY.fit
+2025-05-03 20:27:00,621 - main_logger - INFO - User 1: Processing activity 9542373519
+2025-05-03 20:27:01,221 - main_logger - INFO - Parsing file: files/9542373519_ACTIVITY.fit
+2025-05-03 20:27:04,343 - main_logger - INFO - User 1: Processing activity 9533931031
+2025-05-03 20:27:05,204 - main_logger - INFO - Parsing file: files/9533931031_ACTIVITY.fit
+2025-05-03 20:27:10,491 - main_logger - INFO - User 1: Processing activity 9521231403
+2025-05-03 20:27:11,039 - main_logger - INFO - Parsing file: files/9521231403_ACTIVITY.fit
+2025-05-03 20:27:13,648 - main_logger - INFO - User 1: Processing activity 9508567024
+2025-05-03 20:27:14,249 - main_logger - INFO - Parsing file: files/9508567024_ACTIVITY.fit
+2025-05-03 20:27:15,472 - main_logger - INFO - User 1: Processing activity 9486130226
+2025-05-03 20:27:16,156 - main_logger - INFO - Parsing file: files/9486130226_ACTIVITY.fit
+2025-05-03 20:27:20,104 - main_logger - INFO - User 1: Processing activity 9476097317
+2025-05-03 20:27:20,763 - main_logger - INFO - Parsing file: files/9476097317_ACTIVITY.fit
+2025-05-03 20:27:23,737 - main_logger - INFO - User 1: Processing activity 9469572554
+2025-05-03 20:27:24,243 - main_logger - INFO - Parsing file: files/9469572554_ACTIVITY.fit
+2025-05-03 20:27:25,567 - main_logger - INFO - User 1: Processing activity 9463127471
+2025-05-03 20:27:26,086 - main_logger - INFO - Parsing file: files/9463127471_ACTIVITY.fit
+2025-05-03 20:27:28,934 - main_logger - INFO - User 1: Processing activity 9452255553
+2025-05-03 20:27:29,466 - main_logger - INFO - Parsing file: files/9452255553_ACTIVITY.fit
+2025-05-03 20:27:32,086 - main_logger - INFO - User 1: Processing activity 9449728719
+2025-05-03 20:27:32,743 - main_logger - INFO - Parsing file: files/9449728719_ACTIVITY.fit
+2025-05-03 20:27:33,878 - main_logger - INFO - User 1: Processing activity 9433230699
+2025-05-03 20:27:34,537 - main_logger - INFO - Parsing file: files/9433230699_ACTIVITY.fit
+2025-05-03 20:27:38,065 - main_logger - INFO - User 1: Processing activity 9423793994
+2025-05-03 20:27:38,683 - main_logger - INFO - Parsing file: files/9423793994_ACTIVITY.fit
+2025-05-03 20:27:40,064 - main_logger - INFO - User 1: Processing activity 9413523943
+2025-05-03 20:27:40,858 - main_logger - INFO - Parsing file: files/9413523943_ACTIVITY.fit
+2025-05-03 20:27:43,932 - main_logger - INFO - User 1: Processing activity 9402781278
+2025-05-03 20:27:44,629 - main_logger - INFO - Parsing file: files/9402781278_ACTIVITY.fit
+2025-05-03 20:27:50,332 - main_logger - INFO - User 1: Processing activity 9396862414
+2025-05-03 20:27:50,868 - main_logger - INFO - Parsing file: files/9396862414_ACTIVITY.fit
+2025-05-03 20:27:52,189 - main_logger - INFO - User 1: Processing activity 9373318071
+2025-05-03 20:27:52,710 - main_logger - INFO - Parsing file: files/9373318071_ACTIVITY.fit
+2025-05-03 20:27:55,345 - main_logger - INFO - User 1: Processing activity 9359788258
+2025-05-03 20:27:55,885 - main_logger - INFO - Parsing file: files/9359788258_ACTIVITY.fit
+2025-05-03 20:27:58,506 - main_logger - INFO - User 1: Processing activity 9348537209
+2025-05-03 20:27:59,069 - main_logger - INFO - Parsing file: files/9348537209_ACTIVITY.fit
+2025-05-03 20:28:05,282 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 20:28:05,282 - main_logger - INFO - User 1: 211 Garmin Connect activities processed
+2025-05-03 20:43:31,989 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-02 21:49:07 CEST)" was missed by 0:54:24.884096
+2025-05-03 20:43:31,990 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-02 21:49:07 CEST)" was missed by 0:54:24.884992
+2025-05-03 20:43:31,991 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-03 20:49:07 CEST)" was missed by 3:54:24.886217
+2025-05-03 20:44:09,721 - main_logger - INFO - Garmin Connect activities will be processed in the background for user 1
+2025-05-03 20:44:11,346 - main_logger - INFO - User 1: Processing activity 19010540131
+2025-05-03 20:44:11,992 - main_logger - INFO - Parsing file: files/19010540131_ACTIVITY.fit
+2025-05-03 20:44:15,816 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 20:44:15,816 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 20:49:07,106 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-03 21:49:07 CEST)" (scheduled at 2025-05-03 20:49:07.104969+02:00)
+2025-05-03 20:49:07,106 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-03 21:49:07 CEST)" (scheduled at 2025-05-03 20:49:07.105205+02:00)
+2025-05-03 20:49:07,107 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-04 00:49:07 CEST)" (scheduled at 2025-05-03 20:49:07.105361+02:00)
+2025-05-03 20:49:07,119 - main_logger - INFO - User 1: Strava not linked
+2025-05-03 20:49:07,119 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-03 21:49:07 CEST)" executed successfully
+2025-05-03 20:49:07,121 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-03 20:49:07,899 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-03 20:49:07,900 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-04 00:49:07 CEST)" executed successfully
+2025-05-03 20:49:08,414 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-03 20:49:08,414 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 20:49:08,414 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 20:49:08,415 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-03 21:49:07 CEST)" executed successfully
+2025-05-03 21:03:07,628 - main_logger - INFO - Backend shutdown event
+2025-05-03 21:03:07,628 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-03 21:18:31,464 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-03 21:18:31,506 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-03 21:18:31,506 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-03 21:18:31,520 - main_logger - INFO - Checking for migrations not executed
+2025-05-03 21:18:31,678 - main_logger - INFO - Migration check completed
+2025-05-03 21:18:31,679 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-03 21:18:31,679 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-03 21:18:31,680 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-03 21:18:31,680 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-03 21:18:31,680 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-03 21:18:31,680 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-03 21:18:31,680 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-03 21:18:31,680 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-03 21:18:33,928 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-03 21:18:33,929 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 21:18:33,929 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 21:18:33,936 - main_logger - INFO - User 1: Strava not linked
+2025-05-03 21:18:33,936 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-03 21:18:33,942 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-03 21:18:34,658 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-03 21:34:53,138 - main_logger - INFO - Backend shutdown event
+2025-05-03 21:34:53,138 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-03 21:39:34,686 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-03 21:39:34,718 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-03 21:39:34,718 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-03 21:39:34,730 - main_logger - INFO - Checking for migrations not executed
+2025-05-03 21:39:34,850 - main_logger - INFO - Migration check completed
+2025-05-03 21:39:34,851 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-03 21:39:34,851 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-03 21:39:34,852 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-03 21:39:34,852 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-03 21:39:34,852 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-03 21:39:34,852 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-03 21:39:34,852 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-03 21:39:34,852 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-03 21:39:36,816 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-03 21:39:36,817 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 21:39:36,817 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 21:39:36,822 - main_logger - INFO - User 1: Strava not linked
+2025-05-03 21:39:36,823 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-03 21:39:36,827 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-03 21:39:37,560 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-03 21:47:31,859 - main_logger - INFO - Backend shutdown event
+2025-05-03 21:47:31,859 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-03 21:48:58,438 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-03 21:48:58,467 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-03 21:48:58,467 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-03 21:48:58,479 - main_logger - INFO - Checking for migrations not executed
+2025-05-03 21:48:58,618 - main_logger - INFO - Migration check completed
+2025-05-03 21:48:58,619 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-03 21:48:58,619 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-03 21:48:58,619 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-03 21:48:58,619 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-03 21:48:58,619 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-03 21:48:58,619 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-03 21:48:58,620 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-03 21:48:58,620 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-03 21:49:00,511 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-03 21:49:00,511 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 21:49:00,511 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 21:49:00,517 - main_logger - INFO - User 1: Strava not linked
+2025-05-03 21:49:00,517 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-03 21:49:00,522 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-03 21:49:01,315 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-03 21:49:13,193 - main_logger - WARNING - Invalid activity_type received: [object Object]
+2025-05-03 21:49:16,363 - main_logger - WARNING - Invalid activity_type received: [object Object]
+2025-05-03 21:49:18,927 - main_logger - WARNING - Invalid activity_type received: [object Object]
+2025-05-03 21:49:34,354 - main_logger - INFO - Backend shutdown event
+2025-05-03 21:49:34,354 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-03 21:50:58,631 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-03 21:50:58,666 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-03 21:50:58,666 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-03 21:50:58,677 - main_logger - INFO - Checking for migrations not executed
+2025-05-03 21:50:58,798 - main_logger - INFO - Migration check completed
+2025-05-03 21:50:58,799 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-03 21:50:58,799 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-03 21:50:58,800 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-03 21:50:58,800 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-03 21:50:58,800 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-03 21:50:58,800 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-03 21:50:58,800 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-03 21:50:58,800 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-03 21:51:00,605 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-03 21:51:00,606 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-03 21:51:00,606 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-03 21:51:00,611 - main_logger - INFO - User 1: Strava not linked
+2025-05-03 21:51:00,612 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-03 21:51:00,616 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-03 21:51:01,842 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 08:52:54,283 - main_logger - INFO - Backend shutdown event
+2025-05-04 08:52:54,284 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 08:54:36,638 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 08:54:36,685 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 08:54:36,685 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 08:54:36,711 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 08:54:36,909 - main_logger - INFO - Migration check completed
+2025-05-04 08:54:36,909 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 08:54:36,910 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 08:54:36,910 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 08:54:36,910 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 08:54:36,910 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 08:54:36,911 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 08:54:36,911 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 08:54:36,911 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 08:54:39,448 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 08:54:39,449 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 08:54:39,449 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-04 08:54:39,456 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 08:54:39,457 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 08:54:39,463 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 08:54:40,275 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 09:43:12,644 - main_logger - INFO - Backend shutdown event
+2025-05-04 09:43:12,646 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 09:55:00,748 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 09:55:00,793 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 09:55:00,793 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 09:55:00,809 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 09:55:00,969 - main_logger - INFO - Migration check completed
+2025-05-04 09:55:00,969 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 09:55:00,969 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 09:55:00,970 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 09:55:00,970 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 09:55:00,970 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 09:55:00,970 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 09:55:00,971 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 09:55:00,971 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 09:55:02,811 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 09:55:02,811 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 09:55:02,811 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-04 09:55:02,818 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 09:55:02,819 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 09:55:02,824 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 09:55:03,735 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 13:47:11,894 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 10:55:00 CEST)" was missed by 0:52:10.923968
+2025-05-04 13:47:11,895 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 13:55:00 CEST)" was missed by 0:52:10.924497
+2025-05-04 13:55:00,973 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 14:55:00 CEST)" (scheduled at 2025-05-04 13:55:00.970431+02:00)
+2025-05-04 13:55:00,974 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 14:55:00 CEST)" (scheduled at 2025-05-04 13:55:00.970783+02:00)
+2025-05-04 13:55:00,974 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-04 17:55:00 CEST)" (scheduled at 2025-05-04 13:55:00.971037+02:00)
+2025-05-04 13:55:00,990 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 13:55:00,992 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 13:55:00,995 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 14:55:00 CEST)" executed successfully
+2025-05-04 13:55:02,027 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 13:55:02,029 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-04 17:55:00 CEST)" executed successfully
+2025-05-04 13:55:02,821 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 13:55:02,821 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 13:55:02,821 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-04 13:55:02,822 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 14:55:00 CEST)" executed successfully
+2025-05-04 16:03:29,001 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 16:55:00 CEST)" was missed by 0:08:28.030792
+2025-05-04 16:03:29,001 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 16:55:00 CEST)" was missed by 0:08:28.030863
+2025-05-04 17:30:32,101 - main_logger - INFO - Garmin Connect activities will be processed in the background for user 1
+2025-05-04 17:30:33,458 - main_logger - INFO - User 1: Processing activity 19023855406
+2025-05-04 17:30:34,534 - main_logger - INFO - Parsing file: files/19023855406_ACTIVITY.fit
+2025-05-04 17:30:37,386 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 17:30:37,387 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 17:30:37,387 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 17:56:22,872 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 18:55:00 CEST)" was missed by 0:01:21.901919
+2025-05-04 17:56:22,872 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 18:55:00 CEST)" was missed by 0:01:21.901910
+2025-05-04 17:56:22,873 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-04 21:55:00 CEST)" was missed by 0:01:21.901921
+2025-05-04 18:24:17,971 - main_logger - INFO - Backend shutdown event
+2025-05-04 18:24:17,972 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:03:34,551 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:03:34,585 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:03:34,585 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:03:34,598 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:03:34,649 - main_logger - INFO - Migration check completed
+2025-05-04 19:03:34,650 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:03:34,650 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:03:34,650 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:03:34,650 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:03:34,650 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:03:34,650 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:03:34,650 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:03:34,650 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:03:36,431 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 19:03:36,434 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 19:03:36,434 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:03:36,434 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 19:03:36,440 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:03:36,441 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:03:36,446 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:03:37,372 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 19:03:40,087 - main_logger - INFO - Backend shutdown event
+2025-05-04 19:03:40,088 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:05:26,150 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:05:26,187 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:05:26,187 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:05:26,198 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:05:26,245 - main_logger - INFO - Migration check completed
+2025-05-04 19:05:26,245 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:05:26,245 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:05:26,246 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:05:26,246 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:05:26,246 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:05:26,246 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:05:26,246 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:05:26,246 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:05:28,081 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 19:05:28,083 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 19:05:28,083 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:05:28,083 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 19:05:28,088 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:05:28,088 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:05:28,091 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:05:28,888 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 19:09:32,088 - main_logger - INFO - Backend shutdown event
+2025-05-04 19:09:32,089 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:11:01,757 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:11:01,793 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:11:01,793 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:11:01,804 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:11:01,850 - main_logger - INFO - Migration check completed
+2025-05-04 19:11:01,850 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:11:01,851 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:11:01,851 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:11:01,851 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:11:01,851 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:11:01,851 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:11:01,851 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:11:01,851 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:11:03,941 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 19:11:03,942 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 19:11:03,942 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:11:03,942 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 19:11:03,945 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:11:03,945 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:11:03,947 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:11:04,720 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 19:21:57,209 - main_logger - INFO - Backend shutdown event
+2025-05-04 19:21:57,210 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:23:24,188 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:23:24,219 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:23:24,219 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:23:24,233 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:23:24,281 - main_logger - INFO - Migration check completed
+2025-05-04 19:23:24,281 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:23:24,281 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:23:24,282 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:23:24,282 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:23:24,282 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:23:24,282 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:23:24,282 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:23:24,282 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:23:28,293 - main_logger - ERROR - Error fetching activities for user 1 after 2025-05-03 17:23:24.285903+00:00: HTTPSConnectionPool(host='thegarth.s3.amazonaws.com', port=443): Max retries exceeded with url: /oauth_consumer.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7b6d211629f0>: Failed to resolve 'thegarth.s3.amazonaws.com' ([Errno -2] Name or service not known)"))
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/socket.py", line 978, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+                       ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x7b6d211629f0>: Failed to resolve 'thegarth.s3.amazonaws.com' ([Errno -2] Name or service not known)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.12/site-packages/requests/adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='thegarth.s3.amazonaws.com', port=443): Max retries exceeded with url: /oauth_consumer.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7b6d211629f0>: Failed to resolve 'thegarth.s3.amazonaws.com' ([Errno -2] Name or service not known)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/app/backend/garmin/activity_utils.py", line 28, in fetch_and_process_activities
+    garmin_activities = garminconnect_client.get_activities_by_date(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garminconnect/__init__.py", line 1151, in get_activities_by_date
+    act = self.connectapi(url, params=params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garminconnect/__init__.py", line 218, in connectapi
+    return self.garth.connectapi(path, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garth/http.py", line 184, in connectapi
+    resp = self.request(method, "connectapi", path, api=True, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garth/http.py", line 133, in request
+    self.refresh_oauth2()
+  File "/usr/local/lib/python3.12/site-packages/garth/http.py", line 179, in refresh_oauth2
+    self.oauth2_token = sso.exchange(self.oauth1_token, self)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garth/sso.py", line 181, in exchange
+    sess = GarminOAuth1Session(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/garth/sso.py", line 32, in __init__
+    OAUTH_CONSUMER = requests.get(OAUTH_CONSUMER_URL).json()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/requests/adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='thegarth.s3.amazonaws.com', port=443): Max retries exceeded with url: /oauth_consumer.json (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7b6d211629f0>: Failed to resolve 'thegarth.s3.amazonaws.com' ([Errno -2] Name or service not known)"))
+2025-05-04 19:23:28,296 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:23:28,296 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-04 19:23:28,299 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:23:28,300 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:23:28,302 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:23:30,922 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 19:51:43,354 - main_logger - INFO - Backend shutdown event
+2025-05-04 19:51:43,354 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:53:20,236 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:53:20,266 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:53:20,266 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:53:20,277 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:53:20,324 - main_logger - INFO - Migration check completed
+2025-05-04 19:53:20,325 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:53:20,325 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:53:20,325 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:53:20,325 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:53:20,325 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:53:20,325 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:53:20,325 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:53:20,326 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:53:22,306 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 19:53:22,309 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 19:53:22,309 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:53:22,309 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 19:53:22,315 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:53:22,316 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:53:22,320 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:53:23,032 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 19:54:26,394 - main_logger - INFO - Backend shutdown event
+2025-05-04 19:54:26,395 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 19:55:54,941 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 19:55:54,970 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 19:55:54,971 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 19:55:54,981 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 19:55:55,027 - main_logger - INFO - Migration check completed
+2025-05-04 19:55:55,027 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 19:55:55,027 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 19:55:55,028 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 19:55:55,028 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 19:55:55,028 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 19:55:55,028 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 19:55:55,028 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 19:55:55,028 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 19:55:56,789 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 19:55:56,791 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 19:55:56,791 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 19:55:56,792 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 19:55:56,797 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 19:55:56,798 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 19:55:56,802 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 19:55:57,625 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 20:01:26,456 - main_logger - INFO - Backend shutdown event
+2025-05-04 20:01:26,456 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 20:02:59,390 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:02:59,427 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:02:59,427 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:02:59,439 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 20:02:59,488 - main_logger - INFO - Migration check completed
+2025-05-04 20:02:59,489 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 20:02:59,489 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 20:02:59,490 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 20:02:59,490 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 20:02:59,490 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 20:02:59,490 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 20:02:59,490 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 20:02:59,490 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 20:03:01,383 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 20:03:01,386 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 20:03:01,386 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 20:03:01,386 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 20:03:01,392 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 20:03:01,393 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 20:03:01,397 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 20:03:02,247 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 20:10:59,948 - main_logger - INFO - Backend shutdown event
+2025-05-04 20:10:59,948 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 20:12:33,371 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:12:33,402 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:12:33,402 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:12:33,414 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 20:12:33,465 - main_logger - INFO - Migration check completed
+2025-05-04 20:12:33,466 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 20:12:33,466 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 20:12:33,466 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 20:12:33,466 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 20:12:33,466 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 20:12:33,466 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 20:12:33,467 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 20:12:33,467 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 20:12:35,577 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 20:12:35,579 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 20:12:35,579 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 20:12:35,579 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 20:12:35,584 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 20:12:35,584 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 20:12:35,589 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 20:12:36,374 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 20:27:56,893 - main_logger - INFO - Backend shutdown event
+2025-05-04 20:27:56,893 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 20:29:33,292 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:29:33,327 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:29:33,327 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:29:33,337 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 20:29:33,384 - main_logger - INFO - Migration check completed
+2025-05-04 20:29:33,385 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 20:29:33,385 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 20:29:33,385 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 20:29:33,385 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 20:29:33,385 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 20:29:33,385 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 20:29:33,385 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 20:29:33,385 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 20:29:35,570 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 20:29:35,573 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 20:29:35,573 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 20:29:35,573 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 20:29:35,579 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 20:29:35,580 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 20:29:35,585 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 20:29:36,310 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-04 20:31:39,678 - main_logger - INFO - Backend shutdown event
+2025-05-04 20:31:39,679 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-04 20:33:17,539 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:17,568 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:17,568 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:17,580 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:21,296 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:21,317 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:21,317 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:21,326 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:25,074 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:25,092 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:25,092 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:25,102 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:28,955 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:28,972 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:28,972 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:28,982 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:33,313 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:33,333 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:33,333 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:33,342 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:38,473 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:38,493 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:38,494 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:38,503 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:45,068 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:45,088 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:45,088 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:45,097 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:33:54,790 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:33:54,807 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:33:54,807 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:33:54,815 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:34:10,978 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:34:10,997 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:34:10,997 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:34:11,007 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:34:39,814 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:34:39,834 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:34:39,834 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:34:39,843 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 11deb368d731, Goals on user
+2025-05-04 20:36:36,866 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-04 20:36:36,913 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-04 20:36:36,913 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-04 20:36:36,929 - main_logger - INFO - Checking for migrations not executed
+2025-05-04 20:36:37,003 - main_logger - INFO - Migration check completed
+2025-05-04 20:36:37,004 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-04 20:36:37,004 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-04 20:36:37,004 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-04 20:36:37,005 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-04 20:36:37,005 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-04 20:36:37,005 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-04 20:36:37,005 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-04 20:36:37,005 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-04 20:36:39,173 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-04 20:36:39,177 - main_logger - INFO - User 1: Activity 19010540131 already stored in the database
+2025-05-04 20:36:39,177 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-04 20:36:39,177 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-04 20:36:39,184 - main_logger - INFO - User 1: Strava not linked
+2025-05-04 20:36:39,184 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-04 20:36:39,189 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-04 20:36:40,152 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-05 15:13:57,316 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 21:36:37 CEST)" was missed by 0:37:20.311616
+2025-05-05 15:13:57,317 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-04 21:36:37 CEST)" was missed by 0:37:20.312608
+2025-05-05 15:13:57,318 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-05 16:36:37 CEST)" was missed by 2:37:20.313392
+2025-05-05 17:14:05,228 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 17:36:37 CEST)" was missed by 0:37:28.224068
+2025-05-05 17:14:05,229 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 17:36:37 CEST)" was missed by 0:37:28.224122
+2025-05-05 17:14:05,229 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-05 20:36:37 CEST)" was missed by 0:37:28.224129
+2025-05-05 17:26:46,205 - main_logger - INFO - Backend shutdown event
+2025-05-05 17:26:46,206 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-05 17:28:31,368 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:31,401 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:31,401 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:35,080 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:35,098 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:35,099 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:38,643 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:38,663 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:38,664 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:42,685 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:42,705 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:42,705 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:46,961 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:46,980 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:46,980 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:51,786 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:51,805 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:51,806 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:28:58,439 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:28:58,457 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:28:58,457 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:29:08,231 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:29:08,249 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:29:08,249 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:29:24,962 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:29:24,982 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:29:24,982 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:29:53,771 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:29:53,792 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:29:53,792 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:30:48,225 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:30:48,245 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:30:48,245 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:31:51,313 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:31:51,330 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:31:51,331 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:32:54,513 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:32:54,532 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:32:54,532 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:35:00,226 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 17:35:00,260 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 17:35:00,260 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 17:35:00,270 - main_logger - INFO - Checking for migrations not executed
+2025-05-05 17:35:00,404 - main_logger - INFO - Migration check completed
+2025-05-05 17:35:00,404 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-05 17:35:00,404 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-05 17:35:00,405 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-05 17:35:00,405 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-05 17:35:00,405 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-05 17:35:00,405 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-05 17:35:00,405 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-05 17:35:00,406 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-05 17:35:02,442 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 17:35:02,442 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 17:35:02,442 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 17:35:02,448 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 17:35:02,449 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-05 17:35:02,453 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-05 17:35:03,240 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-05 18:35:00,406 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 18:35:00 CEST)" (scheduled at 2025-05-05 18:35:00.405003+02:00)
+2025-05-05 18:35:00,407 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 19:35:00 CEST)" (scheduled at 2025-05-05 18:35:00.405338+02:00)
+2025-05-05 18:35:00,414 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 18:35:00,415 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 19:35:00 CEST)" executed successfully
+2025-05-05 18:35:01,863 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 18:35:01,863 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 18:35:01,864 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 18:35:01,864 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 19:35:00 CEST)" executed successfully
+2025-05-05 19:35:00,406 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:35:00 CEST)" (scheduled at 2025-05-05 19:35:00.405003+02:00)
+2025-05-05 19:35:00,406 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:35:00 CEST)" (scheduled at 2025-05-05 19:35:00.405338+02:00)
+2025-05-05 19:35:00,412 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 19:35:00,412 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:35:00 CEST)" executed successfully
+2025-05-05 19:35:01,880 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 19:35:01,880 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 19:35:01,880 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 19:35:01,881 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:35:00 CEST)" executed successfully
+2025-05-05 19:54:23,321 - main_logger - INFO - Backend shutdown event
+2025-05-05 19:54:23,322 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-05 19:56:14,064 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 19:56:14,086 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 19:56:14,086 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 19:56:14,096 - main_logger - INFO - Checking for migrations not executed
+2025-05-05 19:56:14,211 - main_logger - INFO - Migration check completed
+2025-05-05 19:56:14,211 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-05 19:56:14,211 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-05 19:56:14,212 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-05 19:56:14,212 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-05 19:56:14,212 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-05 19:56:14,212 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-05 19:56:14,212 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-05 19:56:14,212 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-05 19:56:16,106 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 19:56:16,106 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 19:56:16,106 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 19:56:16,111 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 19:56:16,111 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-05 19:56:16,114 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-05 19:56:16,902 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-05 20:56:14,213 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:56:14 CEST)" (scheduled at 2025-05-05 20:56:14.211999+02:00)
+2025-05-05 20:56:14,215 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 20:56:14 CEST)" (scheduled at 2025-05-05 20:56:14.212245+02:00)
+2025-05-05 20:56:14,249 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 20:56:14,250 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 21:56:14 CEST)" executed successfully
+2025-05-05 20:56:15,743 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 20:56:15,743 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 20:56:15,743 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 20:56:15,744 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 21:56:14 CEST)" executed successfully
+2025-05-05 21:13:45,678 - main_logger - INFO - Backend shutdown event
+2025-05-05 21:13:45,678 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-05 21:15:56,227 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-05 21:15:56,261 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-05 21:15:56,261 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-05 21:15:56,272 - main_logger - INFO - Checking for migrations not executed
+2025-05-05 21:15:56,394 - main_logger - INFO - Migration check completed
+2025-05-05 21:15:56,395 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-05 21:15:56,395 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-05 21:15:56,395 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-05 21:15:56,395 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-05 21:15:56,395 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-05 21:15:56,395 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-05 21:15:56,395 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-05 21:15:56,395 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-05 21:15:58,348 - main_logger - INFO - User 1: Activity 19023855406 already stored in the database
+2025-05-05 21:15:58,349 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-05 21:15:58,349 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-05 21:15:58,355 - main_logger - INFO - User 1: Strava not linked
+2025-05-05 21:15:58,355 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-05 21:15:58,360 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-05 21:15:59,304 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-06 12:45:32,768 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 22:15:56 CEST)" was missed by 0:29:36.372853
+2025-05-06 12:45:32,769 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-05 22:15:56 CEST)" was missed by 0:29:36.373918
+2025-05-06 12:45:32,771 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-06 13:15:56 CEST)" was missed by 3:29:36.375212
+2025-05-06 12:53:37,277 - main_logger - INFO - Backend shutdown event
+2025-05-06 12:53:37,277 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-06 12:56:04,510 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-06 12:56:04,545 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-06 12:56:04,545 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-06 12:56:04,560 - main_logger - INFO - Checking for migrations not executed
+2025-05-06 12:56:04,717 - main_logger - INFO - Migration check completed
+2025-05-06 12:56:04,718 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-06 12:56:04,718 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-06 12:56:04,719 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-06 12:56:04,719 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-06 12:56:04,719 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-06 12:56:04,719 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-06 12:56:04,719 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-06 12:56:04,719 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-06 12:56:06,121 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 12:56:06,121 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-06 12:56:06,128 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 12:56:06,129 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-06 12:56:06,134 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-06 12:56:07,040 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-06 13:17:11,604 - main_logger - INFO - Backend shutdown event
+2025-05-06 13:17:11,604 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-06 13:18:55,120 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-06 13:18:55,156 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-06 13:18:55,156 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-06 13:18:55,171 - main_logger - INFO - Checking for migrations not executed
+2025-05-06 13:18:55,326 - main_logger - INFO - Migration check completed
+2025-05-06 13:18:55,327 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-06 13:18:55,327 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-06 13:18:55,328 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-06 13:18:55,328 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-06 13:18:55,329 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-06 13:18:55,329 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-06 13:18:55,329 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-06 13:18:55,329 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-06 13:18:56,678 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 13:18:56,678 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-06 13:18:56,684 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 13:18:56,685 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-06 13:18:56,689 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-06 13:18:57,421 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-06 13:22:26,829 - main_logger - INFO - Backend shutdown event
+2025-05-06 13:22:26,829 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-06 13:24:06,073 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-06 13:24:06,100 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-06 13:24:06,101 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-06 13:24:06,115 - main_logger - INFO - Checking for migrations not executed
+2025-05-06 13:24:06,263 - main_logger - INFO - Migration check completed
+2025-05-06 13:24:06,263 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-06 13:24:06,263 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-06 13:24:06,264 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-06 13:24:06,264 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-06 13:24:06,264 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-06 13:24:06,264 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-06 13:24:06,264 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-06 13:24:06,264 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-06 13:24:08,382 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 13:24:08,382 - main_logger - INFO - User 1: 0 Garmin Connect activities processed
+2025-05-06 13:24:08,390 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 13:24:08,391 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-06 13:24:08,397 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-06 13:24:09,611 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-06 17:07:36,570 - main_logger - INFO - Backend shutdown event
+2025-05-06 17:07:36,571 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-06 17:09:21,422 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-06 17:09:21,459 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-06 17:09:21,459 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-06 17:09:21,473 - main_logger - INFO - Checking for migrations not executed
+2025-05-06 17:09:21,621 - main_logger - INFO - Migration check completed
+2025-05-06 17:09:21,622 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-06 17:09:21,622 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-06 17:09:21,623 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-06 17:09:21,623 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-06 17:09:21,623 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-06 17:09:21,623 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-06 17:09:21,623 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-06 17:09:21,623 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-06 17:09:23,396 - main_logger - INFO - User 1: Processing activity 19041507482
+2025-05-06 17:09:23,831 - main_logger - INFO - Parsing file: files/19041507482_ACTIVITY.fit
+2025-05-06 17:09:26,538 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 17:09:26,538 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-06 17:09:26,543 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 17:09:26,543 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-06 17:09:26,547 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-06 17:09:27,276 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-06 18:09:22,571 - apscheduler.executors.default - INFO - Running job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 18:09:21 CEST)" (scheduled at 2025-05-06 18:09:21.622797+02:00)
+2025-05-06 18:09:22,571 - apscheduler.executors.default - INFO - Running job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 19:09:21 CEST)" (scheduled at 2025-05-06 18:09:21.623158+02:00)
+2025-05-06 18:09:22,602 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 18:09:22,603 - apscheduler.executors.default - INFO - Job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 19:09:21 CEST)" executed successfully
+2025-05-06 18:09:24,131 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-06 18:09:24,132 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 18:09:24,132 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-06 18:09:24,134 - apscheduler.executors.default - INFO - Job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 19:09:21 CEST)" executed successfully
+2025-05-06 21:30:01,943 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-06 21:30:01,974 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-06 21:30:01,974 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-06 21:30:01,987 - alembic.runtime.migration - INFO - Running upgrade f98fe1fc0fa0 -> 1288ec48e3dc, add_routes_table_and_activity_route_fk
+2025-05-06 21:30:02,026 - main_logger - INFO - Checking for migrations not executed
+2025-05-06 21:30:02,085 - main_logger - INFO - Migration check completed
+2025-05-06 21:30:02,086 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-06 21:30:02,086 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-06 21:30:02,087 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-06 21:30:02,087 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-06 21:30:02,087 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-06 21:30:02,087 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-06 21:30:02,087 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-06 21:30:02,087 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-06 21:30:03,896 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-06 21:30:03,896 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-06 21:30:03,896 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-06 21:30:03,901 - main_logger - INFO - User 1: Strava not linked
+2025-05-06 21:30:03,901 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-06 21:30:03,906 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-06 21:30:04,675 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 11:35:00,614 - apscheduler.executors.default - WARNING - Run time of job "retrieve_strava_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 22:30:02 CEST)" was missed by 0:04:58.527727
+2025-05-07 11:35:00,615 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_activities_for_days (trigger: interval[1:00:00], next run at: 2025-05-06 22:30:02 CEST)" was missed by 0:04:58.528198
+2025-05-07 11:35:00,616 - apscheduler.executors.default - WARNING - Run time of job "retrieve_garminconnect_users_bc_for_days (trigger: interval[4:00:00], next run at: 2025-05-07 13:30:02 CEST)" was missed by 2:04:58.529007
+2025-05-07 11:46:19,671 - main_logger - INFO - No direct GPX file found for activity 214. Attempting to reconstruct from streams.
+2025-05-07 11:56:59,220 - main_logger - INFO - Backend shutdown event
+2025-05-07 11:56:59,221 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-07 12:03:13,598 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-07 12:03:13,626 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 12:03:13,626 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 12:03:13,639 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 12:03:13,707 - main_logger - INFO - Migration check completed
+2025-05-07 12:03:13,708 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 12:03:13,708 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 12:03:13,708 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 12:03:13,708 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 12:03:13,708 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 12:03:13,708 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 12:03:13,709 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 12:03:13,709 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 12:03:15,611 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 12:03:15,611 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 12:03:15,611 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-07 12:03:15,618 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 12:03:15,618 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 12:03:15,624 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 12:03:16,416 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 12:05:38,391 - main_logger - INFO - No direct GPX file found for activity 214. Attempting to reconstruct from streams.
+2025-05-07 12:07:38,357 - main_logger - INFO - Backend shutdown event
+2025-05-07 12:07:38,357 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-07 12:09:10,738 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-07 12:09:10,767 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 12:09:10,767 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 12:09:10,782 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 12:09:10,854 - main_logger - INFO - Migration check completed
+2025-05-07 12:09:10,854 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 12:09:10,854 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 12:09:10,855 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 12:09:10,855 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 12:09:10,855 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 12:09:10,855 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 12:09:10,855 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 12:09:10,855 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 12:09:12,672 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 12:09:12,673 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 12:09:12,673 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-07 12:09:12,679 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 12:09:12,680 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 12:09:12,685 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 12:09:13,646 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 12:09:48,626 - main_logger - INFO - No direct GPX file found for activity 214. Attempting to reconstruct from streams.
+2025-05-07 12:09:48,645 - main_logger - INFO - Successfully reconstructed GPX from lat/lon stream for activity 214
+2025-05-07 12:14:44,136 - main_logger - INFO - Backend shutdown event
+2025-05-07 12:14:44,136 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-07 12:16:20,024 - main_logger - INFO - Backend startup event - v0.10.1
+2025-05-07 12:16:20,052 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 12:16:20,052 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 12:16:20,067 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 12:16:20,140 - main_logger - INFO - Migration check completed
+2025-05-07 12:16:20,140 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 12:16:20,140 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 12:16:20,141 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 12:16:20,141 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 12:16:20,141 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 12:16:20,141 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 12:16:20,142 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 12:16:20,142 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 12:16:21,996 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 12:16:21,996 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 12:16:21,996 - main_logger - INFO - User 1: 1 Garmin Connect activities processed
+2025-05-07 12:16:22,002 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 12:16:22,003 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 12:16:22,008 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 12:16:23,110 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 12:21:40,538 - main_logger - INFO - No direct GPX file found for activity 214. Attempting to reconstruct from streams.
+2025-05-07 12:21:40,556 - main_logger - INFO - Successfully reconstructed GPX from lat/lon stream for activity 214
+2025-05-07 12:28:42,824 - main_logger - WARNING - Invalid GPX content during upload: 'GPX' object has no attribute 'parse'
+2025-05-07 14:39:03,931 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:03,964 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:03,965 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:08,246 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:08,266 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:08,266 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:12,341 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:12,364 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:12,364 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:16,561 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:16,583 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:16,583 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:21,081 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:21,101 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:21,101 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:26,164 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:26,186 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:26,186 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:33,029 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:33,049 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:33,049 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:42,924 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:42,940 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:42,940 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:59,083 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:39:59,102 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:39:59,102 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:39:59,122 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 14:39:59,310 - main_logger - INFO - Migration check completed
+2025-05-07 14:39:59,311 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 14:39:59,311 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 14:39:59,312 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 14:39:59,312 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 14:39:59,312 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 14:39:59,312 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 14:39:59,312 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 14:39:59,312 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 14:40:01,213 - main_logger - INFO - User 1: Processing activity 19051163176
+2025-05-07 14:40:01,881 - main_logger - INFO - Parsing file: files/19051163176_ACTIVITY.fit
+2025-05-07 14:40:04,584 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 14:40:04,584 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 14:40:04,584 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-07 14:40:04,587 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 14:40:04,587 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 14:40:04,589 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 14:40:05,389 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 14:40:11,515 - main_logger - INFO - Backend shutdown event
+2025-05-07 14:40:11,515 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-07 14:41:39,269 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 14:41:39,291 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 14:41:39,291 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 14:41:39,302 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 14:41:39,428 - main_logger - INFO - Migration check completed
+2025-05-07 14:41:39,428 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 14:41:39,428 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 14:41:39,429 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 14:41:39,429 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 14:41:39,429 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 14:41:39,429 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 14:41:39,429 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 14:41:39,429 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 14:41:41,221 - main_logger - INFO - User 1: Activity 19051163176 already stored in the database
+2025-05-07 14:41:41,224 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 14:41:41,224 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 14:41:41,224 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-07 14:41:41,231 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 14:41:41,231 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 14:41:41,236 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 14:41:42,009 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
+2025-05-07 14:42:00,304 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 305, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-07 14:42:07,239 - main_logger - ERROR - Error in get_distinct_activity_types_for_user: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+Traceback (most recent call last):
+  File "/app/backend/activities/crud.py", line 305, in get_distinct_activity_types_for_user
+    [activities_utils.ACTIVITY_ID_TO_NAME.get(id, "Unknown") for id in type_ids]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
+2025-05-07 14:46:36,979 - main_logger - INFO - Backend shutdown event
+2025-05-07 14:46:36,979 - apscheduler.scheduler - INFO - Scheduler has been shut down

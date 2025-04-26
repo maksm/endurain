@@ -1,0 +1,19 @@
+# Cline Rules for Endurain Project
+
+## Overview
+This file captures project-specific patterns, user preferences, and technical insights discovered while working on the Endurain project. It helps maintain consistency and efficiency across tasks.
+
+## Initial Observations (Based on Setup & Task)
+*   **Project Structure:** Standard Vue frontend / FastAPI backend. Clear separation of concerns.
+*   **Memory Bank:** Essential for context due to session resets. Must be kept up-to-date. Core files created (projectbrief, productContext, systemPatterns, techContext, activeContext, progress).
+*   **Task:** Add an Activities list page with pagination (initial focus) and filtering (later).
+*   **UI:** Should integrate with existing Bootstrap styling.
+*   **Backend Interaction:** Frontend relies heavily on backend API calls. Need to identify/verify relevant endpoints.
+*   **User Preference:** Keep initial implementation simple, avoid overengineering.
+
+## Future Learning Areas
+*   Specific component libraries or patterns used for tables/pagination.
+*   State management approach (likely Pinia).
+*   API endpoint conventions (naming, parameters, response structure).
+*   Common data formatting needs (dates, durations, pace).
+*   User workflow preferences for navigation and data display.

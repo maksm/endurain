@@ -1,0 +1,1714 @@
+diff --git a/backend/app/activity_summaries/crud.py b/backend/app/activity_summaries/crud.py
+new file mode 100644
+index 00000000..50d2437b
+--- /dev/null
++++ b/backend/app/activity_summaries/crud.py
+@@ -0,0 +1,268 @@
++from sqlalchemy.orm import Session
++from sqlalchemy import func, extract, and_
++from datetime import datetime, timedelta, date
++
++from typing import List # Added List import
++from activities.models import Activity
++# Import the conversion function and the name-to-ID map
++from activities.utils import set_activity_name_based_on_activity_type, ACTIVITY_NAME_TO_ID
++from .schema import (
++    WeeklySummaryResponse, MonthlySummaryResponse, YearlySummaryResponse,
++    DaySummary, WeekSummary, MonthSummary, SummaryMetrics, TypeBreakdownItem # Added TypeBreakdownItem
++)
++
++def _get_type_breakdown(db: Session, user_id: int, start_date: date, end_date: date, activity_type: str | None = None) -> List[TypeBreakdownItem]:
++    """Helper function to get summary breakdown by activity type, optionally filtered by a specific type."""
++    query = db.query(
++        Activity.activity_type.label('activity_type'),
++        func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
++        func.coalesce(func.sum(Activity.total_timer_time), 0.0).label('total_duration'),
++        func.coalesce(func.sum(Activity.elevation_gain), 0).label('total_elevation_gain'),
++        func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
++        func.count(Activity.id).label('activity_count')
++    ).filter(
++        Activity.user_id == user_id,
++        Activity.start_time >= start_date,
++        Activity.start_time < end_date
++    )
++
++    # Apply activity type filter if provided
++    if activity_type:
++        activity_type_id = ACTIVITY_NAME_TO_ID.get(activity_type.lower())
++        if activity_type_id is not None:
++            query = query.filter(Activity.activity_type == activity_type_id)
++        else:
++            # If the provided type name is invalid, return no results for the breakdown
++            return None
++
++    query = query.group_by(
++        Activity.activity_type
++    ).order_by(
++        func.count(Activity.id).desc(), # Order by count descending
++        Activity.activity_type.asc() # Then by type ascending
++    )
++
++    type_results = query.all()
++    type_breakdown_list = []
++    for row in type_results:
++        activity_type_name = set_activity_name_based_on_activity_type(row.activity_type) # Keep getting name for now
++        type_breakdown_list.append(TypeBreakdownItem(
++            activity_type_id=int(row.activity_type), # Add the numeric ID
++            activity_type=activity_type_name, # Keep sending the name too
++            total_distance=float(row.total_distance),
++            total_duration=float(row.total_duration),
++            total_elevation_gain=float(row.total_elevation_gain),
++            total_calories=float(row.total_calories),
++            activity_count=int(row.activity_count)
++        ))
++    # Return the list (can be empty if filtered type has no activities)
++    return type_breakdown_list
++
++def get_weekly_summary(db: Session, user_id: int, target_date: date, activity_type: str | None = None) -> WeeklySummaryResponse:
++    start_of_week = target_date - timedelta(days=target_date.weekday())
++    end_of_week = start_of_week + timedelta(days=7)
++
++    # Base query for daily breakdown
++    query = db.query(
++        extract('isodow', Activity.start_time).label('day_of_week'),
++        func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
++        func.coalesce(func.sum(Activity.total_timer_time), 0.0).label('total_duration'),
++        func.coalesce(func.sum(Activity.elevation_gain), 0).label('total_elevation_gain'),
++        func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
++        func.count(Activity.id).label('activity_count')
++    ).filter(
++        Activity.user_id == user_id,
++        Activity.start_time >= start_of_week,
++        Activity.start_time < end_of_week
++    )
++
++    # Apply activity type filter if provided
++    activity_type_id = None
++    if activity_type:
++        activity_type_id = ACTIVITY_NAME_TO_ID.get(activity_type.lower())
++        if activity_type_id is not None:
++            query = query.filter(Activity.activity_type == activity_type_id)
++        else:
++            # If type is invalid, the query will return no results, leading to an empty summary
++            query = query.filter(Activity.id == -1) # Force no results
++
++    # Continue with grouping and ordering
++    query = query.group_by(
++        extract('isodow', Activity.start_time)
++    ).order_by(
++        extract('isodow', Activity.start_time)
++    )
++
++    daily_results = query.all()
++    breakdown = []
++    overall_metrics = SummaryMetrics()
++
++    day_map = {day.day_of_week: day for day in daily_results}
++
++    for i in range(1, 8): # ISO day 1 (Mon) to 7 (Sun)
++        day_data = day_map.get(i)
++        if day_data:
++            day_summary = DaySummary(
++                day_of_week=i - 1, # Adjust to 0-6
++                total_distance=float(day_data.total_distance),
++                total_duration=float(day_data.total_duration),
++                total_elevation_gain=float(day_data.total_elevation_gain),
++                total_calories=float(day_data.total_calories),
++                activity_count=int(day_data.activity_count)
++            )
++            breakdown.append(day_summary)
++            overall_metrics.total_distance += day_summary.total_distance
++            overall_metrics.total_duration += day_summary.total_duration
++            overall_metrics.total_elevation_gain += day_summary.total_elevation_gain
++            overall_metrics.total_calories += day_summary.total_calories
++            overall_metrics.activity_count += day_summary.activity_count
++        else:
++             breakdown.append(DaySummary(day_of_week=i - 1)) # Add empty summary for days with no activity
++
++    return WeeklySummaryResponse(
++        total_distance=overall_metrics.total_distance,
++        total_duration=overall_metrics.total_duration,
++        total_elevation_gain=overall_metrics.total_elevation_gain,
++        total_calories=overall_metrics.total_calories,
++        activity_count=overall_metrics.activity_count,
++        breakdown=breakdown,
++        # Pass filter to type breakdown helper
++        type_breakdown=_get_type_breakdown(db, user_id, start_of_week, end_of_week, activity_type)
++    )
++
++def get_monthly_summary(db: Session, user_id: int, target_date: date, activity_type: str | None = None) -> MonthlySummaryResponse:
++    start_of_month = target_date.replace(day=1)
++    next_month = (start_of_month + timedelta(days=32)).replace(day=1)
++    end_of_month = next_month
++
++    # Base query for weekly breakdown within the month
++    query = db.query(
++        extract('week', Activity.start_time).label('week_number'),
++        func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
++        func.coalesce(func.sum(Activity.total_timer_time), 0.0).label('total_duration'),
++        func.coalesce(func.sum(Activity.elevation_gain), 0).label('total_elevation_gain'),
++        func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
++        func.count(Activity.id).label('activity_count')
++    ).filter(
++        Activity.user_id == user_id,
++        Activity.start_time >= start_of_month,
++        Activity.start_time < end_of_month
++    )
++
++    # Apply activity type filter if provided
++    activity_type_id = None
++    if activity_type:
++        activity_type_id = ACTIVITY_NAME_TO_ID.get(activity_type.lower())
++        if activity_type_id is not None:
++            query = query.filter(Activity.activity_type == activity_type_id)
++        else:
++            query = query.filter(Activity.id == -1) # Force no results
++
++    # Continue with grouping and ordering
++    query = query.group_by(
++        extract('week', Activity.start_time)
++    ).order_by(
++        extract('week', Activity.start_time)
++    )
++
++    weekly_results = query.all()
++    breakdown = []
++    overall_metrics = SummaryMetrics()
++
++    for week_data in weekly_results:
++        week_summary = WeekSummary(
++            week_number=int(week_data.week_number),
++            total_distance=float(week_data.total_distance),
++            total_duration=float(week_data.total_duration),
++            total_elevation_gain=float(week_data.total_elevation_gain),
++            total_calories=float(week_data.total_calories),
++            activity_count=int(week_data.activity_count)
++        )
++        breakdown.append(week_summary)
++        overall_metrics.total_distance += week_summary.total_distance
++        overall_metrics.total_duration += week_summary.total_duration
++        overall_metrics.total_elevation_gain += week_summary.total_elevation_gain
++        overall_metrics.total_calories += week_summary.total_calories
++        overall_metrics.activity_count += week_summary.activity_count
++
++    return MonthlySummaryResponse(
++        total_distance=overall_metrics.total_distance,
++        total_duration=overall_metrics.total_duration,
++        total_elevation_gain=overall_metrics.total_elevation_gain,
++        total_calories=overall_metrics.total_calories,
++        activity_count=overall_metrics.activity_count,
++        breakdown=breakdown,
++        # Pass filter to type breakdown helper
++        type_breakdown=_get_type_breakdown(db, user_id, start_of_month, end_of_month, activity_type)
++    )
++
++def get_yearly_summary(db: Session, user_id: int, year: int, activity_type: str | None = None) -> YearlySummaryResponse:
++    start_of_year = date(year, 1, 1)
++    end_of_year = date(year + 1, 1, 1)
++
++    # Base query for monthly breakdown within the year
++    query = db.query(
++        extract('month', Activity.start_time).label('month_number'),
++        func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
++        func.coalesce(func.sum(Activity.total_timer_time), 0.0).label('total_duration'),
++        func.coalesce(func.sum(Activity.elevation_gain), 0).label('total_elevation_gain'),
++        func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
++        func.count(Activity.id).label('activity_count')
++    ).filter(
++        Activity.user_id == user_id,
++        Activity.start_time >= start_of_year,
++        Activity.start_time < end_of_year
++    )
++
++    # Apply activity type filter if provided
++    activity_type_id = None
++    if activity_type:
++        activity_type_id = ACTIVITY_NAME_TO_ID.get(activity_type.lower())
++        if activity_type_id is not None:
++            query = query.filter(Activity.activity_type == activity_type_id)
++        else:
++            query = query.filter(Activity.id == -1) # Force no results
++
++    # Continue with grouping and ordering
++    query = query.group_by(
++        extract('month', Activity.start_time)
++    ).order_by(
++        extract('month', Activity.start_time)
++    )
++
++    monthly_results = query.all()
++    breakdown = []
++    overall_metrics = SummaryMetrics()
++
++    month_map = {month.month_number: month for month in monthly_results}
++
++    for i in range(1, 13): # Month 1 (Jan) to 12 (Dec)
++        month_data = month_map.get(i)
++        if month_data:
++            month_summary = MonthSummary(
++                month_number=i,
++                total_distance=float(month_data.total_distance),
++                total_duration=float(month_data.total_duration),
++                total_elevation_gain=float(month_data.total_elevation_gain),
++                total_calories=float(month_data.total_calories),
++                activity_count=int(month_data.activity_count)
++            )
++            breakdown.append(month_summary)
++            overall_metrics.total_distance += month_summary.total_distance
++            overall_metrics.total_duration += month_summary.total_duration
++            overall_metrics.total_elevation_gain += month_summary.total_elevation_gain
++            overall_metrics.total_calories += month_summary.total_calories
++            overall_metrics.activity_count += month_summary.activity_count
++        else:
++            breakdown.append(MonthSummary(month_number=i)) # Add empty summary for months with no activity
++
++    return YearlySummaryResponse(
++        total_distance=overall_metrics.total_distance,
++        total_duration=overall_metrics.total_duration,
++        total_elevation_gain=overall_metrics.total_elevation_gain,
++        total_calories=overall_metrics.total_calories,
++        activity_count=overall_metrics.activity_count,
++        breakdown=breakdown,
++        # Pass filter to type breakdown helper
++        type_breakdown=_get_type_breakdown(db, user_id, start_of_year, end_of_year, activity_type)
++    )
+diff --git a/backend/app/activity_summaries/router.py b/backend/app/activity_summaries/router.py
+new file mode 100644
+index 00000000..e1e795ba
+--- /dev/null
++++ b/backend/app/activity_summaries/router.py
+@@ -0,0 +1,75 @@
++from fastapi import APIRouter, Depends, Security, HTTPException, Query, status
++from sqlalchemy.orm import Session
++from typing import Annotated, Callable, Union
++from datetime import date, datetime, timezone
++
++import core.database as core_database
++import core.dependencies as core_dependencies
++import session.security as session_security
++import users.dependencies as users_dependencies
++import activity_summaries.crud as summary_crud
++import activity_summaries.schema as summary_schema
++
++router = APIRouter()
++
++@router.get(
++    "/user/{user_id}/{view_type}",
++    response_model=Union[
++        summary_schema.WeeklySummaryResponse,
++        summary_schema.MonthlySummaryResponse,
++        summary_schema.YearlySummaryResponse
++    ],
++    summary="Get Activity Summary by Period",
++    description="Retrieves aggregated activity summaries (weekly, monthly, or yearly) for a specific user.",
++)
++async def read_activity_summary(
++    user_id: int,
++    view_type: str,
++    validate_user_id: Annotated[Callable, Depends(users_dependencies.validate_user_id)],
++    check_scopes: Annotated[
++        Callable, Security(session_security.check_scopes, scopes=["activities:read"])
++    ],
++    token_user_id: Annotated[
++        int,
++        Depends(session_security.get_user_id_from_access_token),
++    ],
++    db: Annotated[
++        Session,
++        Depends(core_database.get_db),
++    ],
++    target_date_str: Annotated[str | None, Query(alias="date", description="Target date (YYYY-MM-DD) for week/month view. Defaults to today.")] = None,
++    target_year: Annotated[int | None, Query(alias="year", description="Target year for year view. Defaults to current year.")] = None,
++    activity_type: Annotated[str | None, Query(alias="type", description="Filter summary by activity type name.")] = None, # Added activity type filter
++):
++    if user_id != token_user_id:
++        raise HTTPException(
++            status_code=status.HTTP_403_FORBIDDEN,
++            detail="Not authorized to access summaries for this user",
++        )
++
++    today = datetime.now(timezone.utc).date()
++
++    if view_type == "week":
++        try:
++            current_date = date.fromisoformat(target_date_str) if target_date_str else today
++        except (ValueError, TypeError):
++            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid date format. Use YYYY-MM-DD.")
++        return summary_crud.get_weekly_summary(db=db, user_id=user_id, target_date=current_date, activity_type=activity_type) # Pass activity_type
++    elif view_type == "month":
++        try:
++            current_date = date.fromisoformat(target_date_str) if target_date_str else today
++        except (ValueError, TypeError):
++             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid date format. Use YYYY-MM-DD.")
++        # Use the first day of the month derived from the target date
++        month_start_date = current_date.replace(day=1)
++        return summary_crud.get_monthly_summary(db=db, user_id=user_id, target_date=month_start_date, activity_type=activity_type) # Pass activity_type
++    elif view_type == "year":
++        current_year = target_year if target_year else today.year
++        if not (1900 < current_year < 2100): # Basic year validation
++             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid year.")
++        return summary_crud.get_yearly_summary(db=db, user_id=user_id, year=current_year, activity_type=activity_type) # Pass activity_type
++    else:
++        raise HTTPException(
++            status_code=status.HTTP_400_BAD_REQUEST,
++            detail="Invalid view_type. Must be 'week', 'month', or 'year'.",
++        )
+diff --git a/backend/app/activity_summaries/schema.py b/backend/app/activity_summaries/schema.py
+new file mode 100644
+index 00000000..bef55ee3
+--- /dev/null
++++ b/backend/app/activity_summaries/schema.py
+@@ -0,0 +1,40 @@
++from pydantic import BaseModel
++from typing import List, Optional
++
++class SummaryMetrics(BaseModel):
++    total_distance: float = 0.0
++    total_duration: float = 0.0
++    total_elevation_gain: float = 0.0
++    activity_count: int = 0
++    total_calories: float = 0.0
++
++class DaySummary(SummaryMetrics):
++    day_of_week: int # 0=Monday, 6=Sunday
++
++class WeekSummary(SummaryMetrics):
++    week_number: int
++
++class MonthSummary(SummaryMetrics):
++    month_number: int # 1=January, 12=December
++
++class TypeBreakdownItem(SummaryMetrics):
++    """Schema for breakdown by activity type."""
++    activity_type_id: int # Added numeric ID
++    activity_type: str
++
++class WeeklySummaryResponse(SummaryMetrics):
++    breakdown: List[DaySummary]
++    type_breakdown: List[TypeBreakdownItem] | None = None # Added type breakdown
++
++class MonthlySummaryResponse(SummaryMetrics):
++    breakdown: List[WeekSummary]
++    type_breakdown: List[TypeBreakdownItem] | None = None # Added type breakdown
++
++class YearlySummaryResponse(SummaryMetrics):
++    breakdown: List[MonthSummary]
++    type_breakdown: List[TypeBreakdownItem] | None = None # Added type breakdown
++
++class SummaryParams(BaseModel):
++    user_id: int
++    start_date: str
++    end_date: str
+diff --git a/backend/app/core/routes.py b/backend/app/core/routes.py
+index aef8f31e..b381e9f9 100644
+--- a/backend/app/core/routes.py
++++ b/backend/app/core/routes.py
+@@ -12,6 +12,7 @@ import activity_exercise_titles.router as activity_exercise_titles_router
+ import activity_laps.router as activity_laps_router
+ import activity_sets.router as activity_sets_router
+ import activity_streams.router as activity_streams_router
++import activity_summaries.router as activity_summaries_router
+ import activity_workout_steps.router as activity_workout_steps_router
+ import gears.router as gears_router
+ import followers.router as followers_router
+@@ -70,6 +71,12 @@ router.include_router(
+     tags=["activities"],
+     dependencies=[Depends(session_security.validate_access_token)],
+ )
++router.include_router(
++    activity_summaries_router.router,
++    prefix=core_config.ROOT_PATH + "/summaries",
++    tags=["summaries"],
++    dependencies=[Depends(session_security.validate_access_token)],
++)
+ router.include_router(
+     activity_exercise_titles_router.router,
+     prefix=core_config.ROOT_PATH + "/activities/exercise_titles",
+diff --git a/frontend/app/src/components/Navbar/NavbarBottomMobileComponent.vue b/frontend/app/src/components/Navbar/NavbarBottomMobileComponent.vue
+index 15affd5f..4c0b5d47 100644
+--- a/frontend/app/src/components/Navbar/NavbarBottomMobileComponent.vue
++++ b/frontend/app/src/components/Navbar/NavbarBottomMobileComponent.vue
+@@ -12,6 +12,11 @@
+         <br />
+         {{ $t('navbarBottomMobileComponent.activities') }}
+       </router-link>
++      <router-link :to="{ name: 'summary' }" class="nav-link link-body-emphasis">
++        <font-awesome-icon :icon="['fas', 'fa-calendar-alt']" /> <!-- Or fa-chart-line -->
++        <br />
++        {{ $t('navbarBottomMobileComponent.summary') }}
++      </router-link>
+       <router-link :to="{ name: 'gears' }" class="nav-link link-body-emphasis">
+         <font-awesome-icon :icon="['fas', 'fa-bicycle']" />
+         <br />
+diff --git a/frontend/app/src/components/Navbar/NavbarComponent.vue b/frontend/app/src/components/Navbar/NavbarComponent.vue
+index 1d341ffa..255b7a69 100644
+--- a/frontend/app/src/components/Navbar/NavbarComponent.vue
++++ b/frontend/app/src/components/Navbar/NavbarComponent.vue
+@@ -30,6 +30,13 @@
+               {{ $t('navbarComponent.activities') }}
+             </span>
+           </router-link>
++          <!-- Summary link -->
++          <router-link :to="{ name: 'summary' }" class="nav-link link-body-emphasis">
++            <font-awesome-icon :icon="['fas', 'fa-calendar-alt']" /> <!-- Or fa-chart-line -->
++            <span class="ms-1">
++              {{ $t('navbarComponent.summary') }}
++            </span>
++          </router-link>
+           <!-- if is logged in show gears button -->
+           <router-link :to="{ name: 'gears' }" class="nav-link link-body-emphasis">
+             <font-awesome-icon :icon="['fas', 'fa-bicycle']" />
+diff --git a/frontend/app/src/i18n/index.js b/frontend/app/src/i18n/index.js
+index 2a2d7c8b..9b22776a 100644
+--- a/frontend/app/src/i18n/index.js
++++ b/frontend/app/src/i18n/index.js
+@@ -402,6 +402,7 @@ import usNotFoundView from './us/notFoundView.json';
+ import usSearchView from './us/searchView.json';
+ import usSettingsView from './us/settingsView.json';
+ import usUserView from './us/userView.json';
++import usSummaryView from './us/summaryView.json'; // Added import for SummaryView
+ 
+ // Constructing the messages structure
+ const messages = {
+@@ -803,6 +804,7 @@ const messages = {
+     searchView: usSearchView,
+     settingsView: usSettingsView,
+     userView: usUserView,
++    summaryView: usSummaryView, // Added SummaryView to messages
+   },
+ };
+ 
+diff --git a/frontend/app/src/i18n/us/components/navbar/navbarBottomMobileComponent.json b/frontend/app/src/i18n/us/components/navbar/navbarBottomMobileComponent.json
+index 6b0a3ba5..1aea44f3 100644
+--- a/frontend/app/src/i18n/us/components/navbar/navbarBottomMobileComponent.json
++++ b/frontend/app/src/i18n/us/components/navbar/navbarBottomMobileComponent.json
+@@ -1,8 +1,9 @@
+ {
+   "home": "Home",
+   "activities": "Activities",
++  "summary": "Summary",
+   "search": "Search",
+   "gear": "Gear",
+   "health": "Health",
+   "menu": "Menu"
+-}
+\ No newline at end of file
++}
+diff --git a/frontend/app/src/i18n/us/components/navbar/navbarComponent.json b/frontend/app/src/i18n/us/components/navbar/navbarComponent.json
+index 03d6af66..89cff659 100644
+--- a/frontend/app/src/i18n/us/components/navbar/navbarComponent.json
++++ b/frontend/app/src/i18n/us/components/navbar/navbarComponent.json
+@@ -3,9 +3,10 @@
+   "search": "Search",
+   "gear": "Gear",
+   "health": "Health",
++  "summary": "Summary",
+   "profile": "Profile",
+   "settings": "Settings",
+   "login": "Login",
+   "logout": "Logout",
+   "errorLogout": "Error logging out"
+-}
+\ No newline at end of file
++}
+diff --git a/frontend/app/src/i18n/us/summaryView.json b/frontend/app/src/i18n/us/summaryView.json
+new file mode 100644
+index 00000000..ffb75781
+--- /dev/null
++++ b/frontend/app/src/i18n/us/summaryView.json
+@@ -0,0 +1,40 @@
++{
++  "title": "Activity Summary",
++  "filterLabelActivityType": "Activity Type",
++  "filterOptionAllTypes": "All Types",
++  "labelViewType": "View By",
++  "optionWeekly": "Weekly",
++  "optionMonthly": "Monthly",
++  "optionYearly": "Yearly",
++  "labelSelectWeek": "Select Week",
++  "labelSelectMonth": "Select Month",
++  "labelSelectYear": "Select Year",
++  "labelSelectPeriod": "Select Period",
++  "loadingSummary": "Loading summary...",
++  "loadingActivities": "Loading activities...",
++  "headerSummaryFor": "Summary for {period}",
++  "headerBreakdown": "Breakdown",
++  "headerActivitiesInPeriod": "Activities in Period",
++  "errorLoadingSummary": "Error loading summary: {error}",
++  "errorLoadingActivities": "Error loading activities: {error}",
++  "noDataForPeriod": "No data for this period.",
++  "noActivitiesFound": "No activities found for the selected period.",
++  "colDay": "Day",
++  "colWeekNum": "Week #",
++  "colMonth": "Month",
++  "colDistance": "Distance",
++  "colDuration": "Duration",
++  "colElevation": "Elevation",
++  "colCalories": "Calories",
++  "colActivities": "Activities",
++  "metricTotalDistance": "Total Distance",
++  "metricTotalDuration": "Total Duration",
++  "metricTotalElevation": "Total Elevation",
++  "metricTotalCalories": "Total Calories",
++  "metricTotalActivities": "Total Activities",
++  "invalidDateSelected": "Invalid Date Selected",
++  "invalidYearSelected": "Invalid year selected.",
++  "noDateSelected": "No date selected.",
++  "headerTypeBreakdown": "Breakdown by Activity Type",
++  "colActivityType": "Type"
++}
+diff --git a/frontend/app/src/router/index.js b/frontend/app/src/router/index.js
+index b2507c29..ef5f3b8b 100644
+--- a/frontend/app/src/router/index.js
++++ b/frontend/app/src/router/index.js
+@@ -21,6 +21,12 @@ const router = createRouter({
+       component: () => import('../views/ActivitiesView.vue'), // Use dynamic import
+       meta: { requiresAuth: true }
+     },
++    {
++      path: '/summary',
++      name: 'summary',
++      component: () => import('../views/SummaryView.vue'),
++      meta: { requiresAuth: true }
++    },
+     {
+       path: '/gears',
+       name: 'gears',
+diff --git a/frontend/app/src/services/summaryService.js b/frontend/app/src/services/summaryService.js
+new file mode 100644
+index 00000000..37f2d95a
+--- /dev/null
++++ b/frontend/app/src/services/summaryService.js
+@@ -0,0 +1,25 @@
++import { fetchGetRequest } from '@/utils/serviceUtils'
++
++export const summaryService = {
++  /**
++   * Fetches activity summary data for a user based on view type and period.
++   * @param {number} userId - The ID of the user.
++   * @param {string} viewType - The type of summary ('week', 'month', 'year').
++   * @param {object} params - Query parameters (e.g., { date: 'YYYY-MM-DD' } or { year: YYYY }).
++   * @param {string | null} activityType - Optional activity type name to filter by.
++   * @returns {Promise<object>} - The summary data.
++   */
++  getSummary(userId, viewType, params = {}, activityType = null) { // Added activityType parameter
++    const url = `summaries/user/${userId}/${viewType}`;
++    const queryParams = new URLSearchParams(params); // Create params object
++
++    // Add activity type filter if provided
++    if (activityType) {
++      queryParams.append('type', activityType);
++    }
++
++    const queryString = queryParams.toString();
++    const fullUrl = queryString ? `${url}?${queryString}` : url;
++    return fetchGetRequest(fullUrl);
++  }
++}
+diff --git a/frontend/app/src/utils/activityUtils.js b/frontend/app/src/utils/activityUtils.js
+index 7a38faed..c7583b41 100644
+--- a/frontend/app/src/utils/activityUtils.js
++++ b/frontend/app/src/utils/activityUtils.js
+@@ -1,115 +1,127 @@
+ /**
+- * Formats a given pace in meters per minute to a string representation in minutes per kilometer.
+- *
+- * @param {number} pace - The pace in meters per minute.
+- * @param {boolean} units - Whether to include the units in the output string.
+- * @returns {string} The formatted pace as a string in the format "MM:SS min/km".
++ * Returns the Font Awesome icon array for a given activity type ID.
++ * @param {number} typeId - The activity type ID.
++ * @returns {string[]} - Array representing the Font Awesome icon (e.g., ['fas', 'person-running']).
+  */
+-export function formatPaceMetric(pace, units = true) {
+-    // Convert pace to seconds per kilometer
+-    const pacePerKm = pace * 1000 / 60;
+-    // Calculate minutes and seconds
+-    const minutes = Math.floor(pacePerKm);
+-    const seconds = Math.round((pacePerKm - minutes) * 60);
++export function getActivityIcon(typeId) {
++  // Based on logic originally in ActivitySummaryComponent.vue and ActivitiesTable.vue
++  if (typeId == 1 || typeId == 2) {
++    return ['fas', 'person-running'] // Running, Trail Running
++  } else if (typeId == 3) {
++    return ['fas', 'person-running'] // Virtual Run (Consider a different icon?)
++  } else if (typeId == 4 || typeId == 5 || typeId == 6 || typeId == 27) {
++    return ['fas', 'person-biking'] // Cycling, Mountain Biking, Gravel Cycling, E-Bike Ride
++  } else if (typeId == 7) {
++    return ['fas', 'person-biking'] // Virtual Ride (Consider a different icon?)
++  } else if (typeId == 8 || typeId == 9) {
++    return ['fas', 'person-swimming'] // Swimming (Pool), Swimming (Open Water)
++  } else if (typeId == 11) {
++    return ['fas', 'person-walking'] // Walking
++  } else if (typeId == 12) {
++    return ['fas', 'person-hiking'] // Hiking
++  } else if (typeId == 13) {
++    return ['fas', 'sailboat'] // Rowing (sailboat is a placeholder, 'water' or 'rowing' might be better if available)
++  } else if (typeId == 14) {
++    return ['fas', 'hands-praying'] // Yoga (hands-praying is a placeholder, 'yoga' or 'spa' might be better)
++  } else if (typeId == 15) {
++    return ['fas', 'person-skiing'] // Alpine Skiing
++  } else if (typeId == 16) {
++    return ['fas', 'person-skiing-nordic'] // Nordic Skiing
++  } else if (typeId == 17) {
++    return ['fas', 'person-snowboarding'] // Snowboarding
++  } else if (typeId == 18) {
++    return ['fas', 'repeat'] // Transition (Multisport)
++  } else if (
++    typeId == 21 || // Tennis
++    typeId == 22 || // Badminton
++    typeId == 23 || // Squash
++    typeId == 24 || // Table Tennis
++    typeId == 25 || // Racquetball
++    typeId == 26    // Padel
++  ) {
++    return ['fas', 'table-tennis-paddle-ball'] // Generic Racquet sports
++  } else {
++    // Default for Workout, Strength Training, Crossfit, Cardio, HIIT, Pilates, etc. (typeId 10, 19, 20, ...)
++    return ['fas', 'dumbbell']
++  }
++}
+ 
+-    // Format the seconds
+-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
++/**
++ * Formats pace from seconds/meter to minutes:seconds/km.
++ * @param {number | null | undefined} pace - Pace in seconds per meter.
++ * @returns {string} - Formatted pace string (e.g., "5:30 /km") or "N/A".
++ */
++export function formatPaceMetric(pace) {
++  if (pace === null || pace === undefined || pace <= 0) return 'N/A'; // TODO: Use i18n
+ 
+-    // Return the formatted pace
+-    if (units) {
+-        return `${minutes}:${formattedSeconds} min/km`;
+-    }
+-    return `${minutes}:${formattedSeconds}`;
++  const paceSecondsPerKm = pace * 1000;
++  const minutes = Math.floor(paceSecondsPerKm / 60);
++  const seconds = Math.round(paceSecondsPerKm % 60);
++  return `${minutes}:${seconds.toString().padStart(2, '0')} /km`;
+ }
+ 
+ /**
+- * Converts a pace in meters per minute to a pace in minutes per mile.
+- *
+- * @param {number} pace - The pace in meters per minute.
+- * @param {boolean} units - Whether to include the units in the output string.
+- * @returns {string} The formatted pace in minutes per mile (min/mi).
++ * Formats pace from seconds/meter to minutes:seconds/mile.
++ * @param {number | null | undefined} pace - Pace in seconds per meter.
++ * @returns {string} - Formatted pace string (e.g., "8:51 /mi") or "N/A".
+  */
+-export function formatPaceImperial(pace, units = true) {
+-    // Convert pace to seconds per mile (1 mile = 1609.34 meters)
+-    const pacePerMile = (pace * 1609.34) / 60;
+-    // Calculate minutes and seconds
+-    const minutes = Math.floor(pacePerMile);
+-    const seconds = Math.round((pacePerMile - minutes) * 60);
++export function formatPaceImperial(pace) {
++  if (pace === null || pace === undefined || pace <= 0) return 'N/A'; // TODO: Use i18n
+ 
+-    // Format the seconds
+-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+-
+-    // Return the formatted pace
+-    if (units) {
+-        return `${minutes}:${formattedSeconds} min/mi`;
+-    }
+-    return `${minutes}:${formattedSeconds}`;
++  const paceSecondsPerMile = pace * 1609.34;
++  const minutes = Math.floor(paceSecondsPerMile / 60);
++  const seconds = Math.round(paceSecondsPerMile % 60);
++  return `${minutes}:${seconds.toString().padStart(2, '0')} /mi`;
+ }
+ 
+ /**
+- * Formats the swimming pace from minutes per kilometer to minutes per 100 meters.
+- *
+- * @param {number} pace - The swimming pace in minutes per kilometer.
+- * @param {boolean} units - Whether to include the units in the output string.
+- * @returns {string} The formatted pace as a string in the format "MM:SS min/100m".
++ * Formats swim pace from seconds/meter to minutes:seconds/100m.
++ * @param {number | null | undefined} pace - Pace in seconds per meter.
++ * @returns {string} - Formatted pace string (e.g., "1:45 /100m") or "N/A".
+  */
+-export function formatPaceSwimMetric(pace, units = true) {
+-    // Convert pace to seconds per 100 meters
+-    const pacePerKm = pace * 100 / 60;
+-    // Calculate minutes and seconds
+-    const minutes = Math.floor(pacePerKm);
+-    const seconds = Math.round((pacePerKm - minutes) * 60);
+-
+-    // Format the seconds
+-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
++export function formatPaceSwimMetric(pace) {
++  if (pace === null || pace === undefined || pace <= 0) return 'N/A'; // TODO: Use i18n
+ 
+-    // Return the formatted pace
+-    if (units) {
+-        return `${minutes}:${formattedSeconds} min/100m`;
+-    }
+-    return `${minutes}:${formattedSeconds}`;
++  const paceSecondsPer100m = pace * 100;
++  const minutes = Math.floor(paceSecondsPer100m / 60);
++  const seconds = Math.round(paceSecondsPer100m % 60);
++  return `${minutes}:${seconds.toString().padStart(2, '0')} /100m`;
+ }
+ 
+ /**
+- * Converts a swimming pace from meters per second to minutes per 100 yards.
+- *
+- * @param {number} pace - The swimming pace in meters per second.
+- * @param {boolean} units - Whether to include the units in the output string.
+- * @returns {string} The formatted pace in minutes per 100 yards (min/100yd).
++ * Formats swim pace from seconds/meter to minutes:seconds/100yd.
++ * @param {number | null | undefined} pace - Pace in seconds per meter.
++ * @returns {string} - Formatted pace string (e.g., "1:35 /100yd") or "N/A".
+  */
+-export function formatPaceSwimImperial(pace, units = true) {
+-    // Convert pace to seconds per 100 yards (1 yard = 0.9144 meters)
+-    const pacePer100Yards = (pace * 100 * 0.9144) / 60;
+-    // Calculate minutes and seconds
+-    const minutes = Math.floor(pacePer100Yards);
+-    const seconds = Math.round((pacePer100Yards - minutes) * 60);
++export function formatPaceSwimImperial(pace) {
++  if (pace === null || pace === undefined || pace <= 0) return 'N/A'; // TODO: Use i18n
+ 
+-    // Format the seconds
+-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+-
+-    // Return the formatted pace
+-    if (units) {
+-        return `${minutes}:${formattedSeconds} min/100yd`;
+-    }
+-    return `${minutes}:${formattedSeconds}`;
++  const paceSecondsPer100yd = pace * 91.44; // 100 yards = 91.44 meters
++  const minutes = Math.floor(paceSecondsPer100yd / 60);
++  const seconds = Math.round(paceSecondsPer100yd % 60);
++  return `${minutes}:${seconds.toString().padStart(2, '0')} /100yd`;
+ }
+ 
+ /**
+- * Converts a speed from meters per second (m/s) to kilometers per hour (km/h) and formats it to a whole number.
+- *
+- * @param {number} speed - The speed in meters per second (m/s).
+- * @returns {string} The speed converted to kilometers per hour (km/h) and rounded to the nearest whole number.
++ * Formats speed from meters/second to km/h.
++ * @param {number | null | undefined} speed - Speed in meters per second.
++ * @returns {string} - Formatted speed string (e.g., "10.9 km/h") or "N/A".
+  */
+ export function formatAverageSpeedMetric(speed) {
+-    return (speed * 3.6).toFixed(0);
++  if (speed === null || speed === undefined || speed <= 0) return 'N/A'; // TODO: Use i18n
++
++  const speedKmh = speed * 3.6;
++  return `${speedKmh.toFixed(1)} km/h`;
+ }
+ 
+ /**
+- * Converts a speed from meters per second to miles per hour and formats it to a whole number.
+- *
+- * @param {number} speed - The speed in meters per second.
+- * @returns {string} The speed in miles per hour, rounded to the nearest whole number.
++ * Formats speed from meters/second to mph.
++ * @param {number | null | undefined} speed - Speed in meters per second.
++ * @returns {string} - Formatted speed string (e.g., "6.8 mph") or "N/A".
+  */
+ export function formatAverageSpeedImperial(speed) {
+-    return (speed * 2.23694).toFixed(0);
+-}
+\ No newline at end of file
++  if (speed === null || speed === undefined || speed <= 0) return 'N/A'; // TODO: Use i18n
++
++  const speedMph = speed * 2.23694;
++  return `${speedMph.toFixed(1)} mph`;
++}
+diff --git a/frontend/app/src/utils/dateUtils.js b/frontend/app/src/utils/dateUtils.js
+new file mode 100644
+index 00000000..b94904ae
+--- /dev/null
++++ b/frontend/app/src/utils/dateUtils.js
+@@ -0,0 +1,172 @@
++// Helper functions for date calculations, assuming Monday is the start of the week
++
++/**
++ * Gets the start date (Monday) of the week for a given date.
++ * @param {Date} d - The input date.
++ * @returns {Date} - The date of the Monday of that week.
++ */
++export function getWeekStartDate(d) {
++  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
++  const day = date.getUTCDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
++  const diff = date.getUTCDate() - day + (day === 0 ? -6 : 1); // Adjust when day is Sunday
++  return new Date(date.setUTCDate(diff));
++}
++
++/**
++ * Gets the end date (Sunday + 1 day for exclusive range) of the week for a given date.
++ * @param {Date} d - The input date.
++ * @returns {Date} - The date representing the start of the next week.
++ */
++export function getWeekEndDate(d) {
++  const startDate = getWeekStartDate(d);
++  const endDate = new Date(startDate);
++  endDate.setUTCDate(startDate.getUTCDate() + 7);
++  return endDate;
++}
++
++/**
++ * Gets the start date (1st) of the month for a given date.
++ * @param {Date} d - The input date.
++ * @returns {Date} - The date of the first day of that month.
++ */
++export function getMonthStartDate(d) {
++   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1));
++}
++
++/**
++ * Gets the end date (1st of next month) of the month for a given date.
++ * @param {Date} d - The input date.
++ * @returns {Date} - The date representing the start of the next month.
++ */
++export function getMonthEndDate(d) {
++  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1));
++}
++
++/**
++ * Formats a Date object into YYYY-MM-DD string.
++ * @param {Date} date - The input date.
++ * @returns {string} - The formatted date string.
++ */
++export function formatDateISO(date) {
++    // Ensure input is a Date object
++    if (!(date instanceof Date)) {
++        console.error("formatDateISO received non-Date object:", date);
++        // Attempt to parse if it's a valid date string, otherwise return empty or throw
++        try {
++            date = new Date(date);
++            if (isNaN(date.getTime())) throw new Error("Invalid date input");
++        } catch (e) {
++            return ""; // Or handle error appropriately
++        }
++    }
++    // Check for invalid date after potential parsing
++    if (isNaN(date.getTime())) {
++        console.error("formatDateISO received invalid Date object:", date);
++        return "";
++    }
++    return date.toISOString().slice(0, 10);
++}
++
++/**
++ * Gets the ISO week number for a given date.
++ * @param {Date} date - The input date.
++ * @returns {number} - The ISO week number.
++ */
++function getWeekNumber(date) {
++  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
++  // Set to nearest Thursday: current date + 4 - current day number
++  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
++  // Get first day of year
++  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
++  // Calculate full weeks to nearest Thursday
++  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
++  return weekNo;
++}
++
++/**
++ * Parses a "YYYY-Www" string into the Date object for the Monday of that week.
++ * Note: Accuracy depends on consistent ISO 8601 week date interpretation.
++ * @param {string} weekString - The week string (e.g., "2023-W42").
++ * @returns {Date} - The Date object for the start of the week (Monday UTC).
++ */
++export function parseWeekString(weekString) {
++    const match = weekString.match(/^(\d{4})-W(\d{1,2})$/);
++    if (!match) throw new Error(`Invalid week string format: ${weekString}`);
++    const year = parseInt(match[1], 10);
++    const week = parseInt(match[2], 10);
++
++    // Calculate the date of the first day of the year
++    const firstDayOfYear = new Date(Date.UTC(year, 0, 1));
++    // Get the day of the week for the first day (0=Sun, 1=Mon...)
++    const firstDayOfWeek = firstDayOfYear.getUTCDay() || 7; // Adjust Sunday (0) to 7
++
++    // Calculate the date of the first Monday of the year
++    // If Jan 1 is Mon-Thu, the first week starts in this year.
++    // If Jan 1 is Fri-Sun, the first week starts in the previous year, but week 1 starts on the first Monday.
++    let daysOffset = (week - 1) * 7; // Days from start of week 1
++    if (firstDayOfWeek <= 4) {
++        // First day is Mon-Thu, week 1 starts with this week's Monday
++        daysOffset += (1 - firstDayOfWeek);
++    } else {
++        // First day is Fri-Sun, week 1 starts next Monday
++        daysOffset += (8 - firstDayOfWeek);
++    }
++
++    const targetDate = new Date(Date.UTC(year, 0, 1 + daysOffset));
++    return targetDate;
++}
++
++
++/**
++ * Parses a "YYYY-MM" string into the Date object for the 1st of that month.
++ * @param {string} monthString - The month string (e.g., "2023-10").
++ * @returns {Date} - The Date object for the start of the month (1st day UTC).
++ */
++export function parseMonthString(monthString) {
++    const match = monthString.match(/^(\d{4})-(\d{1,2})$/);
++    if (!match) throw new Error(`Invalid month string format: ${monthString}`);
++    const year = parseInt(match[1], 10);
++    const month = parseInt(match[2], 10); // 1-based month
++    // Date.UTC expects 0-based month
++    return new Date(Date.UTC(year, month - 1, 1));
++}
++
++/**
++ * Formats a Date object into a "YYYY-Www" string.
++ * @param {Date} date - The input date.
++ * @returns {string} - The formatted week string.
++ */
++export function formatDateToWeekString(date) {
++    const monday = getWeekStartDate(date); // Ensure we use the start of the week
++    const year = monday.getUTCFullYear();
++    const week = getWeekNumber(monday);
++    // Handle edge case where week number belongs to the previous/next year
++    const firstDayOfYear = new Date(Date.UTC(year, 0, 1));
++    const dayOfYear = Math.floor((monday - firstDayOfYear) / 86400000);
++
++    let displayYear = year;
++    // If it's early January but belongs to the last week of the previous year
++    if (week >= 52 && monday.getUTCMonth() === 0) {
++        displayYear = year - 1;
++    }
++    // If it's late December but belongs to the first week of the next year
++    // This case is less common with getWeekStartDate ensuring Monday, but good to be aware of
++    // getWeekNumber should handle the year correctly based on Thursday rule.
++
++    // Ensure week number is padded
++    const paddedWeek = week < 10 ? `0${week}` : `${week}`;
++    return `${displayYear}-W${paddedWeek}`;
++}
++
++
++/**
++ * Formats a Date object into a "YYYY-MM" string.
++ * @param {Date} date - The input date.
++ * @returns {string} - The formatted month string.
++ */
++export function formatDateToMonthString(date) {
++    const year = date.getUTCFullYear();
++    const month = date.getUTCMonth() + 1; // 0-based to 1-based
++    const paddedMonth = month < 10 ? `0${month}` : `${month}`;
++    return `${year}-${paddedMonth}`;
++}
+diff --git a/frontend/app/src/utils/formatters.js b/frontend/app/src/utils/formatters.js
+new file mode 100644
+index 00000000..575ab39a
+--- /dev/null
++++ b/frontend/app/src/utils/formatters.js
+@@ -0,0 +1,105 @@
++// Utility functions for formatting common data types
++
++/**
++ * Formats distance in meters to kilometers with appropriate precision.
++ * @param {number | null | undefined} meters - Distance in meters.
++ * @returns {string} - Formatted distance string (e.g., "10.23 km", "5.1 km") or 'N/A'.
++ */
++export function formatDistance(meters) {
++  if (meters === null || meters === undefined || meters < 0) return 'N/A'
++  const kilometers = meters / 1000
++  const precision = kilometers < 10 ? 2 : 1
++  // Use Intl.NumberFormat for locale-aware number formatting if needed in the future
++  return `${kilometers.toFixed(precision)} km`
++}
++
++/**
++ * Formats duration in seconds to a human-readable string (e.g., "1h 30m 15s", "45m 0s").
++ * @param {number | null | undefined} seconds - Duration in seconds.
++ * @returns {string} - Formatted duration string or 'N/A'.
++ */
++export function formatDuration(seconds) {
++  if (seconds === null || seconds === undefined || seconds < 0) return 'N/A'
++  if (seconds === 0) return '0s'
++
++  const h = Math.floor(seconds / 3600)
++  const m = Math.floor((seconds % 3600) / 60)
++  const s = Math.floor(seconds % 60)
++  let result = ''
++  if (h > 0) result += `${h}h `
++  if (m > 0 || h > 0) result += `${m}m ` // Show minutes if hours exist or if minutes > 0
++  result += `${s}s`
++  return result.trim()
++}
++
++/**
++ * Formats elevation gain in meters.
++ * @param {number | null | undefined} meters - Elevation gain in meters.
++ * @returns {string} - Formatted elevation string (e.g., "1,234 m") or 'N/A'.
++ */
++export function formatElevation(meters) {
++  if (meters === null || meters === undefined) return 'N/A'
++  // Use toLocaleString for thousands separators based on locale
++  return `${Math.round(meters).toLocaleString()} m`
++}
++
++/**
++ * Formats calories.
++ * @param {number | null | undefined} calories - Calories.
++ * @returns {string} - Formatted calories string (e.g., "1,500 kcal") or 'N/A'.
++ */
++export function formatCalories(calories) {
++  if (calories === null || calories === undefined || calories <= 0) return 'N/A'
++  // Use toLocaleString for thousands separators based on locale
++  return `${Math.round(calories).toLocaleString()} kcal`
++}
++
++/**
++ * Formats pace from seconds per meter to minutes per kilometer.
++ * @param {number | null | undefined} pace - Pace in seconds per meter.
++ * @returns {string} - Formatted pace string (e.g., "5:30 /km") or 'N/A'.
++ */
++export function formatPace(pace) {
++  if (pace === null || pace === undefined || pace <= 0) return 'N/A'
++
++  // Convert seconds/meter to seconds/kilometer
++  const paceSecondsPerKm = pace * 1000
++
++  const minutes = Math.floor(paceSecondsPerKm / 60)
++  const seconds = Math.round(paceSecondsPerKm % 60)
++  return `${minutes}:${seconds.toString().padStart(2, '0')} /km`
++}
++
++/**
++ * Formats average heart rate.
++ * @param {number | null | undefined} avgHr - Average heart rate in bpm.
++ * @returns {string} - Formatted heart rate string (e.g., "150 bpm") or 'N/A'.
++ */
++export function formatAvgHr(avgHr) {
++  if (avgHr === null || avgHr === undefined || avgHr <= 0) return 'N/A'
++  return `${Math.round(avgHr)} bpm`
++}
++
++/**
++ * Formats a date/time string into a locale-aware, user-friendly format.
++ * @param {string | null | undefined} dateTimeString - ISO 8601 date-time string.
++ * @returns {string} - Formatted date/time string or 'N/A'.
++ */
++export function formatDateTime(dateTimeString) {
++  if (!dateTimeString) return 'N/A'
++  try {
++    const options = {
++      year: 'numeric',
++      month: 'short',
++      day: 'numeric',
++      hour: '2-digit',
++      minute: '2-digit'
++      // timeZoneName: 'short' // Optional: Add timezone abbreviation
++    }
++    // Use local timezone formatting by default
++    return new Date(dateTimeString).toLocaleString(undefined, options)
++  } catch (e) {
++    console.error('Error formatting date:', e)
++    return dateTimeString // Fallback
++  }
++}
+diff --git a/frontend/app/src/views/SummaryView.vue b/frontend/app/src/views/SummaryView.vue
+new file mode 100644
+index 00000000..232a33d6
+--- /dev/null
++++ b/frontend/app/src/views/SummaryView.vue
+@@ -0,0 +1,593 @@
++<template>
++  <div class="container mt-4">
++    <h2>{{ t('summaryView.title') }}</h2>
++
++    <!-- Controls Section -->
++    <div class="row mb-3 align-items-end">
++      <!-- Activity Type Filter -->
++      <div class="col-md-3">
++        <label for="activityTypeFilter" class="form-label">{{ t('summaryView.filterLabelActivityType') }}</label>
++        <select id="activityTypeFilter" class="form-select" v-model="selectedActivityType" :disabled="loadingTypes">
++          <option value="">{{ t('summaryView.filterOptionAllTypes') }}</option>
++          <!-- Iterate over dictionary items: key is ID, value is Name -->
++          <option v-for="(name, id) in activityTypes" :key="id" :value="id">{{ name }}</option>
++        </select>
++        <!-- Optional: Add loading/error state for types -->
++         <div v-if="loadingTypes" class="form-text">{{ t('generalItems.labelLoading') }}...</div>
++         <div v-if="errorTypes" class="form-text text-danger">{{ errorTypes }}</div>
++      </div>
++      <!-- View Type Filter -->
++      <div class="col-md-3">
++        <label for="viewType" class="form-label">{{ t('summaryView.labelViewType') }}</label>
++        <select id="viewType" class="form-select" v-model="selectedViewType">
++          <option value="week">{{ t('summaryView.optionWeekly') }}</option>
++          <option value="month">{{ t('summaryView.optionMonthly') }}</option>
++          <option value="year">{{ t('summaryView.optionYearly') }}</option>
++        </select>
++      </div>
++      <div class="col-md-3">
++         <label :for="periodInputId" class="form-label">{{ periodLabel }}</label>
++         <!-- Conditional Input Types -->
++         <!-- Use type="date" for week selection -->
++         <input type="date" :id="periodInputId" class="form-control" v-if="selectedViewType === 'week'" v-model="selectedDate" @change="handleDateInputChange">
++         <!-- Use type="month" for month selection -->
++         <input type="month" :id="periodInputId" class="form-control" v-else-if="selectedViewType === 'month'" v-model="selectedPeriodString">
++         <!-- Use type="number" for year selection -->
++         <input type="number" :id="periodInputId" class="form-control" v-else-if="selectedViewType === 'year'" v-model.number="selectedYear" placeholder="YYYY" min="1900" max="2100">
++      </div>
++      <!-- Add navigation buttons -->
++       <div class="col-md-3 d-flex align-items-end">
++         <button class="btn btn-outline-secondary me-1" @click="navigatePeriod(-1)" :disabled="loadingSummary || loadingActivities"><</button>
++         <button class="btn btn-outline-secondary" @click="navigatePeriod(1)" :disabled="loadingSummary || loadingActivities">></button>
++      </div>
++    </div>
++
++    <!-- Summary Display Section -->
++    <div v-if="loadingSummary" class="text-center">
++      <div class="spinner-border" role="status">
++        <span class="visually-hidden">{{ t('summaryView.loadingSummary') }}</span>
++      </div>
++    </div>
++    <div v-else-if="summaryData" class="card mb-4">
++      <div class="card-header">
++        {{ t('summaryView.headerSummaryFor', { period: summaryPeriodText }) }}
++      </div>
++      <div class="card-body">
++        <!-- Display overall metrics -->
++        <div class="row text-center mb-3">
++           <div class="col"><strong>{{ t('summaryView.metricTotalDistance') }}:</strong><br>{{ formatDistance(summaryData.total_distance) }}</div>
++           <div class="col"><strong>{{ t('summaryView.metricTotalDuration') }}:</strong><br>{{ formatDuration(summaryData.total_duration) }}</div>
++           <div class="col"><strong>{{ t('summaryView.metricTotalElevation') }}:</strong><br>{{ formatElevation(summaryData.total_elevation_gain) }}</div>
++           <div class="col"><strong>{{ t('summaryView.metricTotalCalories') }}:</strong><br>{{ formatCalories(summaryData.total_calories) }}</div>
++           <div class="col"><strong>{{ t('summaryView.metricTotalActivities') }}:</strong><br>{{ summaryData.activity_count }}</div>
++        </div>
++        <hr>
++        <!-- Display breakdown -->
++        <h5>{{ t('summaryView.headerBreakdown') }}</h5>
++        <div class="table-responsive">
++          <table class="table table-sm table-striped">
++            <thead>
++              <tr>
++                <th>{{ breakdownHeader }}</th>
++                <th>{{ t('summaryView.colDistance') }}</th>
++                <th>{{ t('summaryView.colDuration') }}</th>
++                <th>{{ t('summaryView.colElevation') }}</th>
++                <th>{{ t('summaryView.colCalories') }}</th>
++                <th>{{ t('summaryView.colActivities') }}</th>
++              </tr>
++            </thead>
++            <tbody>
++               <tr v-for="item in summaryData.breakdown" :key="getBreakdownKey(item)">
++                  <td>{{ getBreakdownLabel(item) }}</td>
++                  <td>{{ formatDistance(item.total_distance) }}</td>
++                  <td>{{ formatDuration(item.total_duration) }}</td>
++                  <td>{{ formatElevation(item.total_elevation_gain) }}</td>
++                  <td>{{ formatCalories(item.total_calories) }}</td>
++                  <td>{{ item.activity_count }}</td>
++               </tr>
++               <tr v-if="!summaryData.breakdown || summaryData.breakdown.length === 0">
++                  <td :colspan="6" class="text-center">{{ t('summaryView.noDataForPeriod') }}</td>
++               </tr>
++            </tbody>
++          </table>
++        </div>
++
++        <!-- Type Breakdown Section - Only show if data exists AND no specific type is selected -->
++        <div v-if="typeBreakdownData && !selectedActivityType" class="mt-4">
++           <hr>
++           <h5>{{ t('summaryView.headerTypeBreakdown') }}</h5>
++           <div class="table-responsive">
++             <table class="table table-sm table-striped">
++               <thead>
++                 <tr>
++                   <th>{{ t('summaryView.colActivityType') }}</th>
++                   <th>{{ t('summaryView.colDistance') }}</th>
++                   <th>{{ t('summaryView.colDuration') }}</th>
++                   <th>{{ t('summaryView.colElevation') }}</th>
++                   <th>{{ t('summaryView.colCalories') }}</th>
++                   <th>{{ t('summaryView.colActivities') }}</th>
++                 </tr>
++               </thead>
++               <tbody>
++                  <tr v-for="item in typeBreakdownData" :key="item.activity_type_id"> <!-- Use ID for key -->
++                     <td class="text-center"><font-awesome-icon :icon="getActivityIcon(item.activity_type_id)" /></td> <!-- Use ID for icon -->
++                     <td>{{ formatDistance(item.total_distance) }}</td>
++                     <td>{{ formatDuration(item.total_duration) }}</td>
++                     <td>{{ formatElevation(item.total_elevation_gain) }}</td>
++                     <td>{{ formatCalories(item.total_calories) }}</td>
++                     <td>{{ item.activity_count }}</td>
++                  </tr>
++               </tbody>
++             </table>
++           </div>
++        </div>
++        <!-- End Type Breakdown Section -->
++
++      </div>
++    </div>
++     <div v-else-if="errorSummary" class="alert alert-danger">
++      {{ t('summaryView.errorLoadingSummary', { error: errorSummary }) }}
++    </div>
++
++    <!-- Activities List Section -->
++    <h3 class="mt-4">{{ t('summaryView.headerActivitiesInPeriod') }}</h3>
++     <div v-if="loadingActivities" class="text-center">
++      <div class="spinner-border" role="status">
++        <span class="visually-hidden">{{ t('summaryView.loadingActivities') }}</span>
++      </div>
++    </div>
++    <div v-else-if="errorActivities" class="alert alert-danger">
++      {{ t('summaryView.errorLoadingActivities', { error: errorActivities }) }}
++    </div>
++    <div v-else>
++       <ActivitiesTableComponent
++         :activities="activities"
++         :sort-by="sortBy"
++         :sort-order="sortOrder"
++         @sort-changed="handleSort"
++       />
++       <PaginationComponent
++         v-if="totalActivities > 0"
++         :current-page="currentPage"
++         :total-pages="calculatedTotalPages"
++         @page-changed="handlePageChange"
++       />
++       <p v-if="activities.length === 0 && !loadingActivities">{{ t('summaryView.noActivitiesFound') }}</p>
++    </div>
++
++  </div>
++</template>
++
++<script setup>
++import { ref, computed, onMounted, watch } from 'vue';
++import { useI18n } from 'vue-i18n'; // Import useI18n
++import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'; // Import FontAwesomeIcon
++import { useAuthStore } from '@/stores/authStore';
++import { summaryService } from '@/services/summaryService';
++import { activities as activitiesService } from '@/services/activitiesService'; // Ensure this alias is used or adjust
++import ActivitiesTableComponent from '@/components/Activities/ActivitiesTableComponent.vue';
++import PaginationComponent from '@/components/Common/PaginationComponent.vue';
++import { formatDistance, formatDuration, formatElevation, formatCalories } from '@/utils/formatters';
++import { getActivityIcon } from '@/utils/activityUtils'; // Import the icon utility
++import {
++  getWeekStartDate, getWeekEndDate, getMonthStartDate, getMonthEndDate, formatDateISO,
++  parseMonthString, formatDateToMonthString // Removed unused week string functions
++} from '@/utils/dateUtils';
++
++const { t } = useI18n(); // Setup useI18n
++const authStore = useAuthStore();
++
++// Filter and View State
++const selectedViewType = ref('week');
++const selectedActivityType = ref(''); // Added for activity type filter, will hold the ID
++const activityTypes = ref({}); // Changed to store {id: name} dictionary
++const initialDate = new Date();
++// selectedDate remains the canonical YYYY-MM-DD date used for fetching/calculations
++const selectedDate = ref(formatDateISO(initialDate)); // Used for week view input and internal calculations
++const selectedYear = ref(initialDate.getFullYear()); // Used for year view input
++// selectedPeriodString holds the value ONLY for the month input field (YYYY-MM)
++const selectedPeriodString = ref(formatDateToMonthString(initialDate)); // Initialize for month view
++
++// Data State
++const summaryData = ref(null);
++const typeBreakdownData = ref(null); // Added ref for type breakdown
++const activities = ref([]);
++const totalActivities = ref(0);
++const currentPage = ref(1);
++const activitiesPerPage = ref(15);
++
++// Loading and Error State
++const loadingSummary = ref(false);
++const errorSummary = ref(null);
++const loadingActivities = ref(false);
++const errorActivities = ref(null);
++const loadingTypes = ref(false); // Added for type loading
++const errorTypes = ref(null); // Added for type error
++
++// Sorting State
++const sortBy = ref('start_time');
++const sortOrder = ref('desc');
++
++// Computed property for dynamic input ID
++const periodInputId = computed(() => {
++  switch (selectedViewType.value) {
++    case 'week': return 'periodPickerWeek';
++    case 'month': return 'periodPickerMonth';
++    case 'year': return 'periodPickerYear';
++    default: return 'periodPicker'; // Fallback
++  }
++});
++
++const periodLabel = computed(() => {
++  switch (selectedViewType.value) {
++    case 'week': return t('summaryView.labelSelectWeek') // Label for date input in week view
++    case 'month': return t('summaryView.labelSelectMonth')
++    case 'year': return t('summaryView.labelSelectYear')
++    default: return t('summaryView.labelSelectPeriod')
++  }
++})
++
++const summaryPeriodText = computed(() => {
++  if (!summaryData.value && !loadingSummary.value) return t('summaryView.labelSelectPeriod')
++  if (loadingSummary.value) return t('generalItems.labelLoading')
++
++  try {
++    if (selectedViewType.value === 'year') {
++      return `Year ${selectedYear.value}` // Keep simple for now, could translate "Year"
++    }
++    // Use selectedDate for week and month views
++    const date = new Date(selectedDate.value + 'T00:00:00Z') // Use UTC
++    if (isNaN(date.getTime())) return t('summaryView.invalidDateSelected');
++
++    if (selectedViewType.value === 'month') {
++      // Use Intl for month name formatting (respects locale)
++      return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', timeZone: 'UTC' })
++    }
++    if (selectedViewType.value === 'week') {
++      const weekStart = getWeekStartDate(date)
++      // Keep simple for now, could translate "Week starting"
++      return `Week starting ${formatDateISO(weekStart)}`
++    }
++  } catch (e) {
++    console.error("Error formatting summary period text:", e)
++    return t('summaryView.labelSelectPeriod') // Fallback
++  }
++  return ''
++})
++
++const breakdownHeader = computed(() => {
++  switch (selectedViewType.value) {
++    case 'week': return t('summaryView.colDay')
++    case 'month': return t('summaryView.colWeekNum')
++    case 'year': return t('summaryView.colMonth')
++    default: return 'Period' // Fallback, should not happen
++  }
++})
++
++const getBreakdownKey = (item) => {
++  switch (selectedViewType.value) {
++    case 'week': return item.day_of_week
++    case 'month': return item.week_number
++    case 'year': return item.month_number
++    default: return ''
++  }
++}
++
++const getBreakdownLabel = (item) => {
++   switch (selectedViewType.value) {
++    case 'week':
++        // Use Intl for weekday names (respects locale and start day)
++        const tempDate = new Date(); // Create a date object
++        // Find a date that corresponds to the day_of_week (0=Mon, 6=Sun)
++        // Note: This assumes ISO 8601 week date system (Monday=1, Sunday=7) used by backend 'isodow'
++        // Adjusting to match JavaScript's getUTCDay (Sunday=0, Saturday=6) might be complex.
++        // For simplicity, using fixed English names for now. Consider a more robust locale-aware solution later.
++        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
++        return days[item.day_of_week] || 'Unknown Day'
++    case 'month':
++        return `${t('summaryView.colWeekNum')} ${item.week_number}` // Translate "Week #"
++    case 'year':
++        // Use Intl for month names
++        const monthDate = new Date(Date.UTC(selectedYear.value, item.month_number - 1, 1));
++        return monthDate.toLocaleDateString(undefined, { month: 'long', timeZone: 'UTC' });
++    default: return ''
++  }
++}
++
++// Fetch available activity types for the filter dropdown
++const fetchActivityTypes = async () => {
++  if (!authStore.user?.id) return;
++  loadingTypes.value = true;
++  errorTypes.value = null;
++  try {
++    // Store the dictionary directly
++    activityTypes.value = await activitiesService.getActivityTypes();
++  } catch (err) {
++    console.error('Failed to fetch activity types:', err);
++    errorTypes.value = t('generalItems.labelError'); // Use a generic error message
++  } finally {
++    loadingTypes.value = false;
++  }
++};
++
++const fetchSummaryData = async () => {
++  if (!authStore.user?.id) return;
++
++  loadingSummary.value = true
++  errorSummary.value = null
++  summaryData.value = null
++  typeBreakdownData.value = null // Reset type breakdown
++  activities.value = []
++  totalActivities.value = 0
++  currentPage.value = 1
++
++  try {
++    const params = {}
++    if (selectedViewType.value === 'year') {
++      if (!selectedYear.value || selectedYear.value < 1900 || selectedYear.value > 2100) {
++         throw new Error(t('summaryView.invalidYearSelected'))
++      }
++      params.year = selectedYear.value
++    } else {
++       if (!selectedDate.value) {
++          throw new Error(t('summaryView.noDateSelected'))
++       }
++      // Always use selectedDate for week/month API calls
++      params.date = selectedDate.value;
++    }
++    // Look up the activity type name from the ID for the summary service
++    const activityTypeName = selectedActivityType.value ? activityTypes.value[selectedActivityType.value] : null;
++
++    // Pass the selected activity type NAME to the summary service call
++    const response = await summaryService.getSummary(
++        authStore.user.id,
++        selectedViewType.value,
++        params,
++        activityTypeName // Pass selected type NAME or null
++    );
++    summaryData.value = response; // Assign the main summary data
++    typeBreakdownData.value = response.type_breakdown; // Assign the type breakdown data
++    fetchActivitiesForPeriod(); // Fetch activities *after* summary is loaded
++  } catch (err) {
++    console.error('Error fetching summary:', err)
++    // Use error message from exception if available, otherwise use generic translated message
++    errorSummary.value = err.message || (err.response?.data?.detail || t('generalItems.labelError'))
++  } finally {
++    loadingSummary.value = false
++  }
++}
++
++const fetchActivitiesForPeriod = async (page = currentPage.value) => {
++   if (!authStore.user?.id) return
++
++   loadingActivities.value = true
++   errorActivities.value = null
++   if (page === 1) {
++       activities.value = []
++       totalActivities.value = 0
++   }
++
++   try {
++     let startDateStr, endDateStr
++
++     if (selectedViewType.value === 'year') {
++        startDateStr = `${selectedYear.value}-01-01`
++        endDateStr = `${selectedYear.value + 1}-01-01`
++     } else {
++        // Use selectedDate for week/month start/end calculations
++        const date = new Date(selectedDate.value + 'T00:00:00Z')
++        if (isNaN(date.getTime())) throw new Error(t('summaryView.invalidDateSelected'));
++
++        if (selectedViewType.value === 'week') {
++            const weekStart = getWeekStartDate(date)
++            const weekEnd = getWeekEndDate(date)
++            startDateStr = formatDateISO(weekStart)
++            endDateStr = formatDateISO(weekEnd)
++        } else { // month
++            const monthStart = getMonthStartDate(date)
++            const monthEnd = getMonthEndDate(date)
++            startDateStr = formatDateISO(monthStart)
++            endDateStr = formatDateISO(monthEnd)
++        }
++     }
++
++     // Prepare filters, including the new activity type filter
++     const filters = {
++       start_date: startDateStr,
++       end_date: endDateStr,
++       type: selectedActivityType.value || null // Pass null or omit if empty string
++     };
++     // Remove null/empty filters
++     Object.keys(filters).forEach(key => (filters[key] == null || filters[key] === '') && delete filters[key]);
++
++
++     const response = await activitiesService.getUserActivitiesWithPagination(
++         authStore.user.id,
++         page,
++         activitiesPerPage.value,
++         filters, // Pass the filters object
++         sortBy.value, // Pass sort column
++         sortOrder.value // Pass sort order
++     );
++
++     activities.value = response.activities || []
++     totalActivities.value = response.total_count || 0
++     currentPage.value = page
++
++   } catch (err) {
++     console.error('Error fetching activities:', err)
++     errorActivities.value = err.message || (err.response?.data?.detail || t('generalItems.labelError'))
++   } finally {
++     loadingActivities.value = false
++   }
++}
++
++// Function to handle page changes from pagination component
++function handlePageChange(newPage) {
++  fetchActivitiesForPeriod(newPage)
++}
++
++// Function to handle sorting changes from table component
++function handleSort(columnName) {
++  if (sortBy.value === columnName) {
++    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
++  } else {
++    sortBy.value = columnName
++    sortOrder.value = 'desc'
++  }
++  fetchActivitiesForPeriod(1);
++}
++
++// Function to handle triggering data fetch when relevant period changes
++function triggerDataFetch() {
++    currentPage.value = 1;
++    // Ensure selectedDate/selectedYear is valid before fetching
++    if ((selectedViewType.value !== 'year' && selectedDate.value) || (selectedViewType.value === 'year' && selectedYear.value)) {
++        fetchSummaryData();
++    } else {
++        console.warn("Skipping fetch, invalid date or year.");
++        // Optionally clear data or show a message
++        summaryData.value = null;
++        typeBreakdownData.value = null;
++        activities.value = [];
++        totalActivities.value = 0;
++        errorSummary.value = t('summaryView.noDateSelected'); // Or a more specific error
++    }
++}
++
++// Handler for the date input change (used in week view)
++function handleDateInputChange() {
++    // The v-model already updated selectedDate, just trigger the fetch
++    triggerDataFetch();
++}
++
++// Watch for changes in the selected period string (month input ONLY)
++watch(selectedPeriodString, (newString) => {
++  // Only act if in month view and the string is valid
++  if (selectedViewType.value !== 'month' || !newString) return;
++  try {
++    const newDate = parseMonthString(newString); // Gets the 1st of the month
++    if (newDate && !isNaN(newDate.getTime())) {
++      const newDateISO = formatDateISO(newDate);
++      // Update selectedDate only if it differs, to avoid redundant fetches
++      if (newDateISO !== selectedDate.value) {
++        selectedDate.value = newDateISO;
++        triggerDataFetch(); // Fetch data for the new month
++      }
++    }
++  } catch (e) {
++    console.error(`Error parsing month string ${newString}:`, e);
++    errorSummary.value = t('summaryView.invalidInputFormat');
++  }
++});
++
++// Watch for changes in the selected year input
++watch(selectedYear, (newYear) => {
++    // Only act if in year view and the year is valid
++    if (selectedViewType.value !== 'year' || !newYear) return;
++    // Basic validation, could be more robust
++    if (newYear >= 1900 && newYear <= 2100) {
++         triggerDataFetch(); // Fetch data for the new year
++    } else {
++        console.warn("Invalid year selected:", newYear);
++        errorSummary.value = t('summaryView.invalidYearSelected');
++        // Clear data as the year is invalid
++        summaryData.value = null;
++        typeBreakdownData.value = null;
++        activities.value = [];
++        totalActivities.value = 0;
++    }
++});
++
++// Watch for changes in the activity type filter dropdown
++watch(selectedActivityType, () => {
++  // When the type filter changes, refetch data starting from page 1
++  triggerDataFetch();
++});
++
++// Watch for changes in the view type dropdown
++watch(selectedViewType, (newType) => {
++  try {
++    // Ensure selectedDate is valid before proceeding, reset if not
++    let baseDate;
++    try {
++        baseDate = new Date(selectedDate.value + 'T00:00:00Z');
++        if (isNaN(baseDate.getTime())) throw new Error("Invalid base date");
++    } catch {
++        baseDate = new Date(); // Default to today if selectedDate was invalid
++        selectedDate.value = formatDateISO(baseDate);
++    }
++
++    // Update the relevant input model based on the new view type
++    if (newType === 'month') {
++      selectedPeriodString.value = formatDateToMonthString(baseDate);
++    } else if (newType === 'year') {
++      selectedYear.value = baseDate.getUTCFullYear();
++    }
++    // No explicit update needed for 'week' as selectedDate is already the model
++
++    // Trigger data fetch for the new view type and period
++    triggerDataFetch();
++
++  } catch (e) {
++      console.error("Error handling view type change:", e);
++      errorSummary.value = t('generalItems.labelError');
++      // Attempt to reset to a known state (e.g., weekly view with today's date)
++      const today = new Date();
++      selectedViewType.value = 'week'; // Reset view type
++      selectedDate.value = formatDateISO(today);
++      triggerDataFetch(); // Attempt fetch with reset state
++  }
++});
++
++// Function to navigate period back/forward
++function navigatePeriod(direction) {
++    try {
++        if (selectedViewType.value === 'year') {
++            selectedYear.value += direction;
++            // Watcher on selectedYear will trigger data fetch
++        } else {
++            const currentDate = new Date(selectedDate.value + 'T00:00:00Z');
++            if (isNaN(currentDate.getTime())) return; // Should not happen
++
++            if (selectedViewType.value === 'week') {
++                currentDate.setUTCDate(currentDate.getUTCDate() + (7 * direction));
++                selectedDate.value = formatDateISO(currentDate); // Update date input model
++                triggerDataFetch(); // Manually trigger fetch for week navigation
++            } else { // month
++                currentDate.setUTCMonth(currentDate.getUTCMonth() + direction);
++                // Update the month input model; watcher will handle the rest
++                selectedPeriodString.value = formatDateToMonthString(currentDate);
++            }
++        }
++    } catch (e) {
++        console.error("Error navigating period:", e);
++        errorSummary.value = t('generalItems.labelError'); // Show generic error
++    }
++}
++
++// Calculate total pages for pagination
++const calculatedTotalPages = computed(() => {
++  return totalActivities.value > 0 ? Math.ceil(totalActivities.value / activitiesPerPage.value) : 1
++})
++
++// Fetch initial data on component mount
++onMounted(() => {
++  fetchActivityTypes(); // Fetch types first
++  triggerDataFetch(); // Then fetch summary and activities based on initial state
++});
++
++</script>
++
++<style scoped>
++.table-responsive {
++    max-height: 400px; /* Example height for scrollable breakdown */
++}
++.card .row.text-center p {
++    margin-bottom: 0;
++}
++/* Ensure buttons align nicely */
++.align-items-end {
++    align-items: flex-end;
++}
++</style>
