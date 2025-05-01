@@ -1872,3 +1872,24 @@ Traceback (most recent call last):
 AttributeError: module 'activities.utils' has no attribute 'ACTIVITY_ID_TO_NAME'
 2025-05-07 14:46:36,979 - main_logger - INFO - Backend shutdown event
 2025-05-07 14:46:36,979 - apscheduler.scheduler - INFO - Scheduler has been shut down
+2025-05-07 15:32:03,113 - main_logger - INFO - Backend startup event - v0.10.2
+2025-05-07 15:32:03,133 - alembic.runtime.migration - INFO - Context impl PostgresqlImpl.
+2025-05-07 15:32:03,133 - alembic.runtime.migration - INFO - Will assume transactional DDL.
+2025-05-07 15:32:03,225 - main_logger - INFO - Checking for migrations not executed
+2025-05-07 15:32:03,271 - main_logger - INFO - Migration check completed
+2025-05-07 15:32:03,271 - apscheduler.scheduler - INFO - Scheduler started
+2025-05-07 15:32:03,271 - main_logger - INFO - Added scheduler job to retrieve last day Strava users activities every 60 minutes
+2025-05-07 15:32:03,272 - apscheduler.scheduler - INFO - Added job "retrieve_strava_users_activities_for_days" to job store "default"
+2025-05-07 15:32:03,272 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users activities every 60 minutes
+2025-05-07 15:32:03,272 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_activities_for_days" to job store "default"
+2025-05-07 15:32:03,272 - main_logger - INFO - Added scheduler job to retrieve last day Garmin Connect users body composition every 240 minutes
+2025-05-07 15:32:03,272 - apscheduler.scheduler - INFO - Added job "retrieve_garminconnect_users_bc_for_days" to job store "default"
+2025-05-07 15:32:03,272 - main_logger - INFO - Retrieving last day activities from Garmin Connect and Strava on startup
+2025-05-07 15:32:05,281 - main_logger - INFO - User 1: Activity 19051163176 already stored in the database
+2025-05-07 15:32:05,284 - main_logger - INFO - User 1: Activity 19041507482 already stored in the database
+2025-05-07 15:32:05,284 - main_logger - INFO - User 1: Started Garmin Connect activities processing
+2025-05-07 15:32:05,284 - main_logger - INFO - User 1: 2 Garmin Connect activities processed
+2025-05-07 15:32:05,288 - main_logger - INFO - User 1: Strava not linked
+2025-05-07 15:32:05,288 - main_logger - INFO - Retrieving last day body composition from Garmin Connect on startup
+2025-05-07 15:32:05,290 - main_logger - INFO - User 1: Started Garmin Connect body composition processing
+2025-05-07 15:32:06,186 - main_logger - INFO - User 1: 0 Garmin Connect body composition processed
