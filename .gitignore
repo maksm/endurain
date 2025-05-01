@@ -70,3 +70,13 @@ frontend/app/*.tsbuildinfo
 
 # site folder
 site/
+backend/logs/app.log
+backend/files/processed/*
+memory-bank/*
+postgres/*
+.clinerules
+backend/app/alembic/versions/e01dc994960b_added_recap_models.py
+*.patch
+backend/app/alembic/versions/f98fe1fc0fa0_add_goals_table.py
+backend/app/alembic/versions/1288ec48e3dc_add_routes_table_and_activity_route_fk.py
+backend/logs/*
