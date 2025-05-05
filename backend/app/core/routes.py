@@ -12,6 +12,7 @@ import activity_exercise_titles.router as activity_exercise_titles_router
 import activity_laps.router as activity_laps_router
 import activity_sets.router as activity_sets_router
 import activity_streams.router as activity_streams_router
+import activity_summaries.router as activity_summaries_router
 import activity_workout_steps.router as activity_workout_steps_router
 import gears.router as gears_router
 import followers.router as followers_router
@@ -68,6 +69,12 @@ router.include_router(
     activities_router.router,
     prefix=core_config.ROOT_PATH + "/activities",
     tags=["activities"],
+    dependencies=[Depends(session_security.validate_access_token)],
+)
+router.include_router(
+    activity_summaries_router.router,
+    prefix=core_config.ROOT_PATH + "/summaries",
+    tags=["summaries"],
     dependencies=[Depends(session_security.validate_access_token)],
 )
 router.include_router(

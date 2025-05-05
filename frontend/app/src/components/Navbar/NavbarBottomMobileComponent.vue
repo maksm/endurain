@@ -12,15 +12,15 @@
         <br />
         {{ $t('navbarBottomMobileComponent.activities') }}
       </router-link>
+      <router-link :to="{ name: 'summary' }" class="nav-link link-body-emphasis">
+        <font-awesome-icon :icon="['fas', 'fa-calendar-alt']" /> <!-- Or fa-chart-line -->
+        <br />
+        {{ $t('navbarBottomMobileComponent.summary') }}
+      </router-link>
       <router-link :to="{ name: 'gears' }" class="nav-link link-body-emphasis">
         <font-awesome-icon :icon="['fas', 'fa-bicycle']" />
         <br />
         {{ $t('navbarBottomMobileComponent.gear') }}
-      </router-link>
-      <router-link :to="{ name: 'health' }" class="nav-link link-body-emphasis">
-        <font-awesome-icon :icon="['fas', 'fa-heart']" />
-        <br />
-        {{ $t('navbarBottomMobileComponent.health') }}
       </router-link>
       <!--<router-link :to="{ name: 'menu' }" class="nav-link link-body-emphasis">
                 <font-awesome-icon :icon="['fas', 'bars']" size="2x"/>
@@ -59,6 +59,16 @@
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <router-link
+                :to="{ name: 'health' }"
+                class="nav-link link-body-emphasis w-100 py-3 fs-5"
+                @click="closeOffcanvas"
+              >
+                <font-awesome-icon :icon="['fas', 'fa-heart']" />
+                <span class="ms-1">{{ $t('navbarComponent.health') }}</span>
+              </router-link>
+            </li>
             <li class="nav-item">
               <router-link
                 :to="{ name: 'search' }"

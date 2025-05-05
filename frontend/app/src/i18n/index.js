@@ -402,6 +402,7 @@ import usNotFoundView from './us/notFoundView.json';
 import usSearchView from './us/searchView.json';
 import usSettingsView from './us/settingsView.json';
 import usUserView from './us/userView.json';
+import usSummaryView from './us/summaryView.json'; // Added import for SummaryView
 
 // Constructing the messages structure
 const messages = {
@@ -797,12 +798,13 @@ const messages = {
     gearsView: usGearsView,
     gearView: usGearView,
     stravaCallbackView: usStravaCallbackView,
-    activitiesView: usActivitiesView, // Corrected key
+    activitiesView: usActivitiesView,
     healthView: usHealthView,
     notFound: usNotFoundView,
     searchView: usSearchView,
     settingsView: usSettingsView,
     userView: usUserView,
+    summaryView: usSummaryView,
   },
 };
 
