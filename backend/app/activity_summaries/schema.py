@@ -17,9 +17,6 @@ class WeekSummary(SummaryMetrics):
 class MonthSummary(SummaryMetrics):
     month_number: int # 1=January, 12=December
 
-class YearlyTotalItem(SummaryMetrics):
-    year: int
-
 class TypeBreakdownItem(SummaryMetrics):
     """Schema for breakdown by activity type."""
     activity_type_id: int # Added numeric ID
@@ -36,10 +33,6 @@ class MonthlySummaryResponse(SummaryMetrics):
 class YearlySummaryResponse(SummaryMetrics):
     breakdown: List[MonthSummary]
     type_breakdown: List[TypeBreakdownItem] | None = None # Added type breakdown
-
-class LifetimeSummaryResponse(SummaryMetrics):
-    breakdown: List[YearlyTotalItem]
-    type_breakdown: Optional[List[TypeBreakdownItem]] = None
 
 class SummaryParams(BaseModel):
     user_id: int

@@ -811,7 +811,6 @@ const messages = {
     gearsView: usGearsView,
     gearView: usGearView,
     stravaCallbackView: usStravaCallbackView,
-    activityView: usActivityView,
     activitiesView: usActivitiesView,
     healthView: usHealthView,
     notFound: usNotFoundView,

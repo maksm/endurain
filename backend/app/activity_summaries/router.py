@@ -17,11 +17,10 @@ router = APIRouter()
     response_model=Union[
         summary_schema.WeeklySummaryResponse,
         summary_schema.MonthlySummaryResponse,
-        summary_schema.YearlySummaryResponse,
-        summary_schema.LifetimeSummaryResponse
+        summary_schema.YearlySummaryResponse
     ],
     summary="Get Activity Summary by Period",
-    description="Retrieves aggregated activity summaries (weekly, monthly, yearly, or lifetime) for a specific user.",
+    description="Retrieves aggregated activity summaries (weekly, monthly, or yearly) for a specific user.",
 )
 async def read_activity_summary(
     user_id: int,
@@ -69,10 +68,8 @@ async def read_activity_summary(
         if not (1900 < current_year < 2100): # Basic year validation
              raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid year.")
         return summary_crud.get_yearly_summary(db=db, user_id=user_id, year=current_year, activity_type=activity_type) # Pass activity_type
-    elif view_type == "lifetime":
-        return summary_crud.get_lifetime_summary(db=db, user_id=user_id, activity_type=activity_type)
     else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid view_type. Must be 'week', 'month', 'year', or 'lifetime'.",
+            detail="Invalid view_type. Must be 'week', 'month', or 'year'.",
         )

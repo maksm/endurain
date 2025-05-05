@@ -37,8 +37,5 @@
   "noDateSelected": "No date selected.",
   "headerTypeBreakdown": "Breakdown by Activity Type",
   "colActivityType": "Type",
-  "loading": "Loading...",
-  "optionLifetime": "Lifetime",
-  "headerLifetimeTotals": "Lifetime Totals",
-  "colYear": "Year"
+  "loading": "Loading"
 }

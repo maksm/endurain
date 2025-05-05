@@ -23,10 +23,9 @@
           <option value="week">{{ t('summaryView.optionWeekly') }}</option>
           <option value="month">{{ t('summaryView.optionMonthly') }}</option>
           <option value="year">{{ t('summaryView.optionYearly') }}</option>
-          <option value="lifetime">{{ t('summaryView.optionLifetime') }}</option>
         </select>
       </div>
-      <div class="col-md-3" v-if="selectedViewType !== 'lifetime'">
+      <div class="col-md-3">
          <label :for="periodInputId" class="form-label">{{ periodLabel }}</label>
          <!-- Conditional Input Types -->
          <!-- Use type="date" for week selection -->
@@ -37,7 +36,7 @@
          <input type="number" :id="periodInputId" class="form-control" v-else-if="selectedViewType === 'year'" v-model.number="selectedYear" placeholder="YYYY" min="1900" max="2100">
       </div>
       <!-- Add navigation buttons -->
-       <div class="col-md-3 d-flex align-items-end" v-if="selectedViewType !== 'lifetime'">
+       <div class="col-md-3 d-flex align-items-end">
          <button class="btn btn-outline-secondary me-1" @click="navigatePeriod(-1)" :disabled="loadingSummary || loadingActivities"><</button>
          <button class="btn btn-outline-secondary" @click="navigatePeriod(1)" :disabled="loadingSummary || loadingActivities">></button>
       </div>
@@ -51,7 +50,7 @@
     </div>
     <div v-else-if="summaryData" class="card mb-4">
       <div class="card-header">
-        {{ summaryPeriodText }}
+        {{ t('summaryView.headerSummaryFor', { period: summaryPeriodText }) }}
       </div>
       <div class="card-body">
         <!-- Display overall metrics -->
@@ -131,31 +130,29 @@
     </div>
 
     <!-- Activities List Section -->
-    <div v-if="selectedViewType !== 'lifetime'">
-      <h3 class="mt-4">{{ t('summaryView.headerActivitiesInPeriod') }}</h3>
-      <div v-if="loadingActivities" class="text-center">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">{{ t('summaryView.loadingActivities') }}</span>
-        </div>
+    <h3 class="mt-4">{{ t('summaryView.headerActivitiesInPeriod') }}</h3>
+     <div v-if="loadingActivities" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">{{ t('summaryView.loadingActivities') }}</span>
       </div>
-      <div v-else-if="errorActivities" class="alert alert-danger">
-        {{ t('summaryView.errorLoadingActivities', { error: errorActivities }) }}
-      </div>
-      <div v-else>
-        <ActivitiesTableComponent
-          :activities="activities"
-          :sort-by="sortBy"
-          :sort-order="sortOrder"
-          @sort-changed="handleSort"
-        />
-        <PaginationComponent
-          v-if="totalActivities > 0"
-          :current-page="currentPage"
-          :total-pages="calculatedTotalPages"
-          @page-changed="handlePageChange"
-        />
-        <p v-if="activities.length === 0 && !loadingActivities">{{ t('summaryView.noActivitiesFound') }}</p>
-      </div>
+    </div>
+    <div v-else-if="errorActivities" class="alert alert-danger">
+      {{ t('summaryView.errorLoadingActivities', { error: errorActivities }) }}
+    </div>
+    <div v-else>
+       <ActivitiesTableComponent
+         :activities="activities"
+         :sort-by="sortBy"
+         :sort-order="sortOrder"
+         @sort-changed="handleSort"
+       />
+       <PaginationComponent
+         v-if="totalActivities > 0"
+         :current-page="currentPage"
+         :total-pages="calculatedTotalPages"
+         @page-changed="handlePageChange"
+       />
+       <p v-if="activities.length === 0 && !loadingActivities">{{ t('summaryView.noActivitiesFound') }}</p>
     </div>
 
   </div>
@@ -222,62 +219,56 @@ const periodInputId = computed(() => {
 
 const periodLabel = computed(() => {
   switch (selectedViewType.value) {
-    case 'week': return t('summaryView.labelSelectWeek');
-    case 'month': return t('summaryView.labelSelectMonth');
-    case 'year': return t('summaryView.labelSelectYear');
-    case 'lifetime': return ''; // No label needed for lifetime
-    default: return t('summaryView.labelSelectPeriod');
+    case 'week': return t('summaryView.labelSelectWeek') // Label for date input in week view
+    case 'month': return t('summaryView.labelSelectMonth')
+    case 'year': return t('summaryView.labelSelectYear')
+    default: return t('summaryView.labelSelectPeriod')
   }
 })
 
 const summaryPeriodText = computed(() => {
-  if (!summaryData.value && !loadingSummary.value) return t('summaryView.labelSelectPeriod');
-  if (loadingSummary.value) return t('summaryView.loading');
+  if (!summaryData.value && !loadingSummary.value) return t('summaryView.labelSelectPeriod')
+  if (loadingSummary.value) return t('summaryView.loading')
 
   try {
-    if (selectedViewType.value === 'lifetime') {
-      return t('summaryView.headerLifetimeTotals');
-    }
     if (selectedViewType.value === 'year') {
-      return t('summaryView.headerSummaryFor', { period: selectedYear.value });
+      return `Year ${selectedYear.value}` // Keep simple for now, could translate "Year"
     }
     // Use selectedDate for week and month views
-    const date = new Date(selectedDate.value + 'T00:00:00Z'); // Use UTC
+    const date = new Date(selectedDate.value + 'T00:00:00Z') // Use UTC
     if (isNaN(date.getTime())) return t('summaryView.invalidDateSelected');
 
     if (selectedViewType.value === 'month') {
       // Use Intl for month name formatting (respects locale)
-      return t('summaryView.headerSummaryFor', { period: date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', timeZone: 'UTC' }) });
+      return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', timeZone: 'UTC' })
     }
     if (selectedViewType.value === 'week') {
-      const weekStart = getWeekStartDate(date);
+      const weekStart = getWeekStartDate(date)
       // Keep simple for now, could translate "Week starting"
-      return t('summaryView.headerSummaryFor', { period: `Week starting ${formatDateISO(weekStart)}` });
+      return `Week starting ${formatDateISO(weekStart)}`
     }
   } catch (e) {
-    console.error("Error formatting summary period text:", e);
-    return t('summaryView.labelSelectPeriod'); // Fallback
+    console.error("Error formatting summary period text:", e)
+    return t('summaryView.labelSelectPeriod') // Fallback
   }
-  return '';
+  return ''
 })
 
 const breakdownHeader = computed(() => {
   switch (selectedViewType.value) {
-    case 'week': return t('summaryView.colDay');
-    case 'month': return t('summaryView.colWeekNum');
-    case 'year': return t('summaryView.colMonth');
-    case 'lifetime': return t('summaryView.colYear');
-    default: return 'Period'; // Fallback, should not happen
+    case 'week': return t('summaryView.colDay')
+    case 'month': return t('summaryView.colWeekNum')
+    case 'year': return t('summaryView.colMonth')
+    default: return 'Period' // Fallback, should not happen
   }
 })
 
 const getBreakdownKey = (item) => {
   switch (selectedViewType.value) {
-    case 'week': return item.day_of_week;
-    case 'month': return item.week_number;
-    case 'year': return item.month_number;
-    case 'lifetime': return item.year;
-    default: return '';
+    case 'week': return item.day_of_week
+    case 'month': return item.week_number
+    case 'year': return item.month_number
+    default: return ''
   }
 }
 
@@ -290,17 +281,15 @@ const getBreakdownLabel = (item) => {
         // Note: This assumes ISO 8601 week date system (Monday=1, Sunday=7) used by backend 'isodow'
         // Adjusting to match JavaScript's getUTCDay (Sunday=0, Saturday=6) might be complex.
         // For simplicity, using fixed English names for now. Consider a more robust locale-aware solution later.
-        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-        return days[item.day_of_week] || 'Unknown Day';
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        return days[item.day_of_week] || 'Unknown Day'
     case 'month':
-        return `${t('summaryView.colWeekNum')} ${item.week_number}`; // Translate "Week #"
+        return `${t('summaryView.colWeekNum')} ${item.week_number}` // Translate "Week #"
     case 'year':
         // Use Intl for month names
         const monthDate = new Date(Date.UTC(selectedYear.value, item.month_number - 1, 1));
         return monthDate.toLocaleDateString(undefined, { month: 'long', timeZone: 'UTC' });
-    case 'lifetime':
-        return item.year;
-    default: return '';
+    default: return ''
   }
 }
 
@@ -327,30 +316,24 @@ const fetchSummaryData = async () => {
   errorSummary.value = null
   summaryData.value = null
   typeBreakdownData.value = null // Reset type breakdown
-  
-  // Reset activities only if not in lifetime view, or if it's the first page of lifetime view
-  if (selectedViewType.value !== 'lifetime') {
-    activities.value = []
-    totalActivities.value = 0
-    currentPage.value = 1
-  }
-
+  activities.value = []
+  totalActivities.value = 0
+  currentPage.value = 1
 
   try {
-    const params = {};
+    const params = {}
     if (selectedViewType.value === 'year') {
       if (!selectedYear.value || selectedYear.value < 1900 || selectedYear.value > 2100) {
-         throw new Error(t('summaryView.invalidYearSelected'));
+         throw new Error(t('summaryView.invalidYearSelected'))
       }
-      params.year = selectedYear.value;
-    } else if (selectedViewType.value === 'week' || selectedViewType.value === 'month') {
+      params.year = selectedYear.value
+    } else {
        if (!selectedDate.value) {
-          throw new Error(t('summaryView.noDateSelected'));
+          throw new Error(t('summaryView.noDateSelected'))
        }
       // Always use selectedDate for week/month API calls
       params.date = selectedDate.value;
-    } // No params for 'lifetime' view type for date/year
-
+    }
     // Look up the activity type name from the ID for the summary service
     const activityTypeName = selectedActivityType.value ? activityTypes.value[selectedActivityType.value] : null;
 
@@ -363,17 +346,7 @@ const fetchSummaryData = async () => {
     );
     summaryData.value = response; // Assign the main summary data
     typeBreakdownData.value = response.type_breakdown; // Assign the type breakdown data
-    
-    if (selectedViewType.value !== 'lifetime') {
-      fetchActivitiesForPeriod(); // Fetch activities *after* summary is loaded for non-lifetime views
-    } else {
-      // For lifetime view, clear activities as they are not displayed
-      activities.value = [];
-      totalActivities.value = 0;
-      currentPage.value = 1;
-      loadingActivities.value = false; // Ensure loading state is reset
-      errorActivities.value = null; // Ensure error state is reset
-    }
+    fetchActivitiesForPeriod(); // Fetch activities *after* summary is loaded
   } catch (err) {
     console.error('Error fetching summary:', err)
     // Use error message from exception if available, otherwise use generic translated message
@@ -468,15 +441,10 @@ function handleSort(columnName) {
 function triggerDataFetch() {
     currentPage.value = 1;
     // Ensure selectedDate/selectedYear is valid before fetching
-    if (
-        (selectedViewType.value === 'week' && selectedDate.value) ||
-        (selectedViewType.value === 'month' && selectedDate.value) || // selectedPeriodString updates selectedDate
-        (selectedViewType.value === 'year' && selectedYear.value) ||
-        selectedViewType.value === 'lifetime' // Always fetch for lifetime
-    ) {
+    if ((selectedViewType.value !== 'year' && selectedDate.value) || (selectedViewType.value === 'year' && selectedYear.value)) {
         fetchSummaryData();
     } else {
-        console.warn("Skipping fetch, invalid date or year for current view type.");
+        console.warn("Skipping fetch, invalid date or year.");
         // Optionally clear data or show a message
         summaryData.value = null;
         typeBreakdownData.value = null;
