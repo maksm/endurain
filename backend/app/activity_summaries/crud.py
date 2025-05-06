@@ -7,11 +7,12 @@ from activities.models import Activity
 from activities.utils import set_activity_name_based_on_activity_type, ACTIVITY_NAME_TO_ID
 from .schema import (
     WeeklySummaryResponse, MonthlySummaryResponse, YearlySummaryResponse,
-    DaySummary, WeekSummary, MonthSummary, SummaryMetrics, TypeBreakdownItem # Added TypeBreakdownItem
+    LifetimeSummaryResponse, YearlyTotalItem,
+    DaySummary, WeekSummary, MonthSummary, SummaryMetrics, TypeBreakdownItem
 )
 
-def _get_type_breakdown(db: Session, user_id: int, start_date: date, end_date: date, activity_type: str | None = None) -> List[TypeBreakdownItem]:
-    """Helper function to get summary breakdown by activity type, optionally filtered by a specific type."""
+def _get_type_breakdown(db: Session, user_id: int, start_date: date | None = None, end_date: date | None = None, activity_type: str | None = None) -> List[TypeBreakdownItem]:
+    """Helper function to get summary breakdown by activity type, optionally filtered by a specific type and date range."""
     query = db.query(
         Activity.activity_type.label('activity_type'),
         func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
@@ -20,10 +21,15 @@ def _get_type_breakdown(db: Session, user_id: int, start_date: date, end_date: d
         func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
         func.count(Activity.id).label('activity_count')
     ).filter(
-        Activity.user_id == user_id,
-        Activity.start_time >= start_date,
-        Activity.start_time < end_date
+        Activity.user_id == user_id
     )
+
+    # Apply date range filter if provided
+    if start_date and end_date:
+        query = query.filter(
+            Activity.start_time >= start_date,
+            Activity.start_time < end_date
+        )
 
     # Apply activity type filter if provided
     if activity_type:
@@ -264,4 +270,66 @@ def get_yearly_summary(db: Session, user_id: int, year: int, activity_type: str 
         breakdown=breakdown,
         # Pass filter to type breakdown helper
         type_breakdown=_get_type_breakdown(db, user_id, start_of_year, end_of_year, activity_type)
+    )
+
+def get_lifetime_summary(db: Session, user_id: int, activity_type: str | None = None) -> LifetimeSummaryResponse:
+    """
+    Retrieves a lifetime summary of all activities for a user, broken down by year.
+    """
+    # Query for yearly breakdown
+    yearly_query = db.query(
+        extract('year', Activity.start_time).label('year'),
+        func.coalesce(func.sum(Activity.distance), 0).label('total_distance'),
+        func.coalesce(func.sum(Activity.total_timer_time), 0.0).label('total_duration'),
+        func.coalesce(func.sum(Activity.elevation_gain), 0).label('total_elevation_gain'),
+        func.coalesce(func.sum(Activity.calories), 0).label('total_calories'),
+        func.count(Activity.id).label('activity_count')
+    ).filter(
+        Activity.user_id == user_id
+    )
+
+    # Apply activity type filter if provided for the yearly breakdown
+    activity_type_id = None
+    if activity_type:
+        activity_type_id = ACTIVITY_NAME_TO_ID.get(activity_type.lower())
+        if activity_type_id is not None:
+            yearly_query = yearly_query.filter(Activity.activity_type == activity_type_id)
+        else:
+            # If type is invalid, the query will return no results for yearly breakdown
+            yearly_query = yearly_query.filter(Activity.id == -1) # Force no results
+
+    yearly_query = yearly_query.group_by(
+        extract('year', Activity.start_time)
+    ).order_by(
+        extract('year', Activity.start_time).desc() # Show most recent year first
+    )
+
+    yearly_results = yearly_query.all()
+    breakdown = []
+    overall_metrics = SummaryMetrics()
+
+    for row in yearly_results:
+        year_summary = YearlyTotalItem(
+            year=int(row.year),
+            total_distance=float(row.total_distance),
+            total_duration=float(row.total_duration),
+            total_elevation_gain=float(row.total_elevation_gain),
+            total_calories=float(row.total_calories),
+            activity_count=int(row.activity_count)
+        )
+        breakdown.append(year_summary)
+        overall_metrics.total_distance += year_summary.total_distance
+        overall_metrics.total_duration += year_summary.total_duration
+        overall_metrics.total_elevation_gain += year_summary.total_elevation_gain
+        overall_metrics.total_calories += year_summary.total_calories
+        overall_metrics.activity_count += year_summary.activity_count
+
+    return LifetimeSummaryResponse(
+        total_distance=overall_metrics.total_distance,
+        total_duration=overall_metrics.total_duration,
+        total_elevation_gain=overall_metrics.total_elevation_gain,
+        total_calories=overall_metrics.total_calories,
+        activity_count=overall_metrics.activity_count,
+        breakdown=breakdown,
+        type_breakdown=_get_type_breakdown(db, user_id, None, None, activity_type) # Pass None for dates for lifetime type breakdown
     )
