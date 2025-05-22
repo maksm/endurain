@@ -90,8 +90,6 @@
             </li>
           </ul>
         </div>
-      </div>
-    </div>
   </nav>
   <FooterComponent v-else />
 </template>
