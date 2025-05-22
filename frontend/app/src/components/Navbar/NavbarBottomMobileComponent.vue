@@ -32,64 +32,6 @@
                 {{ $t("navbarBottomMobileComponent.menu") }}
             </router-link>
         </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'health' }"
-                class="nav-link link-body-emphasis w-100 py-3 fs-5"
-                @click="closeOffcanvas"
-              >
-                <font-awesome-icon :icon="['fas', 'fa-heart']" />
-                <span class="ms-1">{{ $t('navbarComponent.health') }}</span>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'search' }"
-                class="nav-link link-body-emphasis w-100 py-3 fs-5"
-                @click="closeOffcanvas"
-              >
-                <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
-                <span class="ms-1">{{ $t('navbarComponent.search') }}</span>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'settings' }"
-                class="nav-link link-body-emphasis w-100 py-3 fs-5"
-                @click="closeOffcanvas"
-              >
-                <font-awesome-icon :icon="['fas', 'fa-gear']" />
-                <span class="ms-1">{{ $t('navbarComponent.settings') }}</span>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                :to="{ name: 'user', params: { id: authStore.user.id } }"
-                class="nav-link link-body-emphasis w-100 py-3 fs-5"
-                @click="closeOffcanvas"
-              >
-                <UserAvatarComponent
-                  :user="authStore.user"
-                  :width="24"
-                  :height="24"
-                  :alignTop="2"
-                />
-                <span class="ms-2">{{ $t('navbarComponent.profile') }}</span>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <hr />
-            </li>
-            <li>
-              <a class="nav-link link-body-emphasis w-100 py-3 fs-5" href="#" @click="handleLogout">
-                <font-awesome-icon :icon="['fas', 'fa-sign-out-alt']" />
-                <span class="ms-2">{{ $t('navbarComponent.logout') }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
   </nav>
   <FooterComponent v-else />
 </template>
