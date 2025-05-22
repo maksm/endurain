@@ -7,10 +7,14 @@
                 {{ $t("navbarBottomMobileComponent.home") }}
             </router-link>
             <router-link :to="{ name: 'activities' }" class="nav-link link-body-emphasis">
-                <!-- Corrected route name -->
                 <font-awesome-icon :icon="['fas', 'fa-person-running']" />
                 <br />
                 {{ $t('navbarBottomMobileComponent.activities') }}
+            </router-link>
+            <router-link :to="{ name: 'summary' }" class="nav-link link-body-emphasis">
+                <font-awesome-icon :icon="['fas', 'fa-calendar-alt']" />
+                <br />
+                {{ $t('navbarBottomMobileComponent.summary') }}
             </router-link>
             <router-link :to="{ name: 'gears' }" class="nav-link link-body-emphasis">
                 <font-awesome-icon :icon="['fas', 'fa-bicycle']" />
