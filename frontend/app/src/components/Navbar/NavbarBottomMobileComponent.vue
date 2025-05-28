@@ -1,39 +1,19 @@
 <template>
     <nav class="navbar bg-body-tertiary text-center" v-if="authStore.isAuthenticated">
         <div class="container-fluid justify-content-around">
-            <router-link :to="{ name: 'home' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'fa-home']" />
-                <br>
-                {{ $t("navbarBottomMobileComponent.home") }}
-            </router-link>
-            <router-link :to="{ name: 'activities' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'fa-person-running']" />
+            <router-link
+                v-for="item in navItems"
+                :key="item.routeName"
+                :to="{ name: item.routeName }"
+                class="nav-link link-body-emphasis"
+            >
+                <font-awesome-icon :icon="item.icon" />
                 <br />
-                {{ $t('navbarBottomMobileComponent.activities') }}
-            </router-link>
-            <router-link :to="{ name: 'summary' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'fa-calendar-alt']" />
-                <br />
-                {{ $t('navbarBottomMobileComponent.summary') }}
-            </router-link>
-            <router-link :to="{ name: 'gears' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'fa-bicycle']" />
-                <br>
-                {{ $t("navbarBottomMobileComponent.gear") }}
-            </router-link>
-            <router-link :to="{ name: 'health' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'fa-heart']" />
-                <br>
-                {{ $t("navbarBottomMobileComponent.health") }}
-            </router-link>
-            <router-link :to="{ name: 'menu' }" class="nav-link link-body-emphasis">
-                <font-awesome-icon :icon="['fas', 'bars']" />
-                <br>
-                {{ $t("navbarBottomMobileComponent.menu") }}
+                {{ $t(item.labelKey) }}
             </router-link>
         </div>
-  </nav>
-  <FooterComponent v-else />
+    </nav>
+    <FooterComponent v-else />
 </template>
 
 <script>
@@ -46,30 +26,34 @@ import { useAuthStore } from '@/stores/authStore'
 import FooterComponent from '@/components/FooterComponent.vue'
 import UserAvatarComponent from '@/components/Users/UserAvatarComponent.vue'
 // Import Notivue push
-import { push } from 'notivue'
+import { push } from "notivue";
+// Import navigation items
+import { mobileNavItems } from "@/config/navigation.js";
 
 export default {
-	components: {
-		UserAvatarComponent,
-		FooterComponent,
-	},
-	setup() {
-		const router = useRouter();
-		const authStore = useAuthStore();
-		const { locale, t } = useI18n();
+    components: {
+        UserAvatarComponent,
+        FooterComponent,
+    },
+    setup() {
+        const router = useRouter();
+        const authStore = useAuthStore();
+        const { locale, t } = useI18n();
 
-		async function handleLogout() {
-			try {
-				await authStore.logoutUser(router, locale);
-			} catch (error) {
-				push.error(`${t("navbarComponent.errorLogout")} - ${error}`);
-			}
-		}
+        async function handleLogout() {
+            try {
+                await authStore.logoutUser(router, locale);
+            } catch (error) {
+                push.error(`${t("navbarComponent.errorLogout")} - ${error}`);
+            }
+        }
 
-		return {
-			authStore,
-			handleLogout,
-		};
-	},
+        return {
+            authStore,
+            handleLogout,
+            navItems: mobileNavItems, // Expose navItems to the template
+        };
+    },
 };
 </script>
+

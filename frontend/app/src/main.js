@@ -18,6 +18,7 @@ import "leaflet/dist/leaflet.css";
 import App from "./App.vue";
 import router from "./router";
 import i18n from "./i18n";
+import Vue3TouchEvents from "vue3-touch-events";
 
 /* import the fontawesome core */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -55,6 +56,7 @@ const app = createApp(App);
 
 app.use(createPinia());
 app.use(notivue);
+app.use(Vue3TouchEvents);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
 app.use(i18n);
